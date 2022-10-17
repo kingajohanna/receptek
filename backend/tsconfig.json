@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "module": "commonjs",
+    "target": "ES2021",
+    "rootDir": "src",
+    "lib": ["ES2021", "ESNext.AsyncIterable"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
+}

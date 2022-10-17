@@ -1,0 +1,16 @@
+{
+  "name": "receptek-backend",
+  "version": "1.0.0",
+  "repository": {},
+  "scripts": {
+    "prettier": "prettier --check src/",
+    "prettier:fix": "prettier --write src/",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "yarn lint --fix",
+    "start": "echo No build script!",
+    "local": "echo No build script!"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
