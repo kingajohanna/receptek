@@ -7,8 +7,7 @@
     "prettier:fix": "prettier --write src/",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "yarn lint --fix",
-    "start": "echo No build script!",
-    "local": "echo No build script!"
+    "start": "echo No build script!"
   },
   "engines": {
     "node": ">=10"

@@ -1,0 +1,6 @@
+module Pods_expobaretypescript {
+  umbrella header "Pods-expobaretypescript-umbrella.h"
+
+  export *
+  module * { export * }
+}

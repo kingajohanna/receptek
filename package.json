@@ -7,8 +7,8 @@
     "eslint:fix": "eslint src/**/**.{ts,tsx} --fix",
     "start:backend": "npm run start --workspace=backend",
     "start:frontend": "npm run start --workspace=frontend",
-    "local:backend": "npm run local --workspace=backend",
-    "local:frontend": "npm run local --workspace=frontend"
+    "android": "npm run android --workspace=frontend",
+    "ios": "npm run ios --workspace=frontend"
   },
   "workspaces": [
     "frontend",
