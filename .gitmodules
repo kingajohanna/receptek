@@ -1,0 +1,3 @@
+[submodule "receptek-scraper"]
+	path = backend/receptek-scraper
+	url = https://github.com/marcell-szabo/receptek-scraper.git
