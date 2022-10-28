@@ -1,1 +1,1 @@
-../../../../../../../node_modules/expo-modules-core/ios/ReactDelegates/EXReactCompatibleHelpers.h
+../../../../../../node_modules/expo-modules-core/ios/ReactDelegates/EXReactCompatibleHelpers.h

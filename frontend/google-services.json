@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "454226409378",
+    "project_id": "mealo-mao",
+    "storage_bucket": "mealo-mao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454226409378:android:19fe4e536d22a1c58024fb",
+        "android_client_info": {
+          "package_name": "com.mealo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454226409378-4cu0r9hs4oikqlrkc7ii6b373cqe5pqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454226409378-4cu0r9hs4oikqlrkc7ii6b373cqe5pqq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "454226409378-2lpgl2munagbd2397mnalbakcn80eocg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mealo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,1 +1,1 @@
-../../../../../../../node_modules/react-native/React/AppSetup/RCTAppSetupUtils.h
+../../../../../../node_modules/react-native/React/AppSetup/RCTAppSetupUtils.h

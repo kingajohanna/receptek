@@ -1,1 +1,1 @@
-../../../../../../../node_modules/expo-modules-core/ios/JSI/TypedArray.h
+../../../../../../node_modules/expo-modules-core/ios/JSI/TypedArray.h
