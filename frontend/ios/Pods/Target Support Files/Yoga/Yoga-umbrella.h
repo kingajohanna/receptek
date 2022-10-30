@@ -10,21 +10,12 @@
 #endif
 #endif
 
-#import "yoga/BitUtils.h"
-#import "yoga/CompactValue.h"
-#import "yoga/log.h"
-#import "yoga/Utils.h"
-#import "yoga/YGConfig.h"
-#import "yoga/YGEnums.h"
-#import "yoga/YGFloatOptional.h"
-#import "yoga/YGLayout.h"
-#import "yoga/YGMacros.h"
-#import "yoga/YGNode.h"
-#import "yoga/YGNodePrint.h"
-#import "yoga/YGStyle.h"
-#import "yoga/YGValue.h"
-#import "yoga/Yoga-internal.h"
-#import "yoga/Yoga.h"
+#import "YGEnums.h"
+#import "YGMacros.h"
+#import "YGNode.h"
+#import "YGStyle.h"
+#import "YGValue.h"
+#import "Yoga.h"
 
 FOUNDATION_EXPORT double yogaVersionNumber;
 FOUNDATION_EXPORT const unsigned char yogaVersionString[];

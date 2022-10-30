@@ -10,15 +10,15 @@
 #endif
 #endif
 
-#import "ReactCommon/LongLivedObject.h"
-#import "ReactCommon/TurboCxxModule.h"
-#import "ReactCommon/TurboModule.h"
-#import "ReactCommon/TurboModuleBinding.h"
-#import "ReactCommon/TurboModulePerfLogger.h"
-#import "ReactCommon/TurboModuleUtils.h"
-#import "ReactCommon/RCTBlockGuard.h"
-#import "ReactCommon/RCTTurboModule.h"
-#import "ReactCommon/RCTTurboModuleManager.h"
+#import "LongLivedObject.h"
+#import "TurboCxxModule.h"
+#import "TurboModule.h"
+#import "TurboModuleBinding.h"
+#import "TurboModulePerfLogger.h"
+#import "TurboModuleUtils.h"
+#import "RCTBlockGuard.h"
+#import "RCTTurboModule.h"
+#import "RCTTurboModuleManager.h"
 
 FOUNDATION_EXPORT double ReactCommonVersionNumber;
 FOUNDATION_EXPORT const unsigned char ReactCommonVersionString[];

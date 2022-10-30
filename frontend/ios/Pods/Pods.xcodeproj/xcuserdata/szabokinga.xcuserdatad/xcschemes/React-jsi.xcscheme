@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA877ADC442CB19CF61793D234C8B131"
-               BuildableName = "libReact-jsi.a"
+               BuildableName = "jsi.framework"
                BlueprintName = "React-jsi"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

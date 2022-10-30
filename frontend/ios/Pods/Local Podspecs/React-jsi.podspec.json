@@ -1,16 +1,16 @@
 {
   "name": "React-jsi",
-  "version": "0.69.6",
+  "version": "0.68.0",
   "summary": "-",
   "homepage": "https://reactnative.dev/",
   "license": "MIT",
   "authors": "Facebook, Inc. and its affiliates",
   "platforms": {
-    "ios": "12.4"
+    "ios": "11.0"
   },
   "source": {
     "git": "https://github.com/facebook/react-native.git",
-    "tag": "v0.69.6"
+    "tag": "v0.68.0"
   },
   "source_files": "**/*.{cpp,h}",
   "exclude_files": "**/test/*",

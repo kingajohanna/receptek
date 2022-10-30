@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F7D033C4C128EECAA020990641FA985F"
-               BuildableName = "libReact-jsinspector.a"
+               BuildableName = "jsinspector.framework"
                BlueprintName = "React-jsinspector"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

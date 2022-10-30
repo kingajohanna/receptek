@@ -1,15 +1,11 @@
-import { initializeApp } from 'firebase/app';
 import Config from 'react-native-config';
 
 export const firebaseConfig = {
-  apiKey: Config.API_KEY,
-  authDomain: Config.AUTH_DOMAIN,
-  databaseURL: Config.DATABASE_URL,
-  projectId: Config.PROJECT_ID,
-  storageBucket: Config.STORAGE_BUCKET,
-  messagingSenderId: Config.MESSAGING_SENDER_ID,
-  appId: Config.APP_ID,
-  measurementId: Config.MEASURMENT_ID,
+  apiKey: 'AIzaSyBgkCyXlBxAtvXt8EWrnvXS-wZByOPa55M',
+  authDomain: 'mealo-mao.firebaseapp.com',
+  projectId: 'mealo-mao',
+  storageBucket: 'mealo-mao.appspot.com',
+  messagingSenderId: '454226409378',
+  databaseURL: 'https://mealo-mao.firebaseio.com',
+  appId: '1:454226409378:web:bd4c7729c54fd33b8024fb',
 };
-
-const app = initializeApp(firebaseConfig);

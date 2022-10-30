@@ -1,22 +1,4 @@
 {
-  "expo": {
-    "name": "mealo",
-    "slug": "mealo",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "orientation": "portrait",
-    "extra": {
-      "eas": {
-        "projectId": "aa2d5e40-598a-4277-8410-eee9f95a1b2b"
-      }
-    },
-    "android": {
-      "googleServicesFile": "./google-services.json"
-    },
-    "ios": {
-      "googleServicesFile": "./GoogleService-Info.plist"
-    }
-  }
+  "name": "mealo",
+  "displayName": "mealo"
 }

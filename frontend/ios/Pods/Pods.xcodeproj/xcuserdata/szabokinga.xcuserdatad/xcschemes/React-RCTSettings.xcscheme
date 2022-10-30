@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "680299219D3A48D42A648AF6706275A9"
-               BuildableName = "libReact-RCTSettings.a"
+               BuildableName = "RCTSettings.framework"
                BlueprintName = "React-RCTSettings"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
