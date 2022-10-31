@@ -14,8 +14,21 @@
       },
       "oauth_client": [
         {
+          "client_id": "454226409378-226ul71opi4ovk5t0ukgfo8purevvbei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mealo",
+            "certificate_hash": "4b0aca68ac3b5ee8a6fecb68e83f8737fb40cc8d"
+          }
+        },
+        {
           "client_id": "454226409378-4cu0r9hs4oikqlrkc7ii6b373cqe5pqq.apps.googleusercontent.com",
           "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgkCyXlBxAtvXt8EWrnvXS-wZByOPa55M"
         }
       ],
       "services": {

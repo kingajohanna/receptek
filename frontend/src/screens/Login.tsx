@@ -7,6 +7,11 @@ import Config from 'react-native-config';
 import SocialLoginScreen from './auth/SocialLoginScreen';
 import en from '../locales/en';
 
+const firebasePassword = '(?=.*[0-9a-zA-Z]).{6,}';
+const firebaseEmail = new RegExp(
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+);
+
 export const Login = () => {
   const {userStore} = useStore();
   const [isLoginButtonSpinner, setIsLoginButtonSpinner] = useState(false);
@@ -27,14 +32,17 @@ export const Login = () => {
   });
 
   const onGoogleButtonPress = async () => {
-    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-
-    const {idToken} = await GoogleSignin.signIn();
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
     try {
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+
+      const {idToken} = await GoogleSignin.signIn();
+
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
       const user = await auth().signInWithCredential(googleCredential);
+
       userStore.setUser(user);
+
       return;
     } catch {
       return Alert.alert(en.auth.error);
@@ -47,6 +55,16 @@ export const Login = () => {
     repassword: string,
   ) => {
     try {
+      if (
+        !password ||
+        !repassword ||
+        !email ||
+        password !== repassword ||
+        !password.match(firebasePassword) ||
+        !email.match(firebaseEmail)
+      ) {
+        return Alert.alert(en.auth.error);
+      }
       const user = await auth().createUserWithEmailAndPassword(email, password);
       userStore.setUser(user);
       return;
