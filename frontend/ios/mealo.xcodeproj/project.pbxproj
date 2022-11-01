@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2954ECB1290EF46400E4FFB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */; };
+		2995288C29108ACB00927E13 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2995288B291087C400927E13 /* SimpleLineIcons.ttf */; };
+		2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2995288D29108D5400927E13 /* Fontisto.ttf */; };
 		79FBAA66AF1E9C28B548297E /* Pods_mealo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC588ED83C53C7B5CE51B90 /* Pods_mealo.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B88121DF03B05785D496E9BA /* Pods_mealo_mealoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5541DD01D00A7377C526B3B /* Pods_mealo_mealoTests.framework */; };
@@ -38,6 +40,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mealo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mealo/main.m; sourceTree = "<group>"; };
 		2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2995288B291087C400927E13 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		2995288D29108D5400927E13 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-mealo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo.debug.xcconfig"; path = "Target Support Files/Pods-mealo/Pods-mealo.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-mealo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo.release.xcconfig"; path = "Target Support Files/Pods-mealo/Pods-mealo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-mealo-mealoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo-mealoTests.debug.xcconfig"; path = "Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		13B07FAE1A68108700A75B9A /* mealo */ = {
 			isa = PBXGroup;
 			children = (
+				29952888291086F700927E13 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -96,6 +101,15 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = mealo;
+			sourceTree = "<group>";
+		};
+		29952888291086F700927E13 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2995288D29108D5400927E13 /* Fontisto.ttf */,
+				2995288B291087C400927E13 /* SimpleLineIcons.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -244,6 +258,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */,
+				2995288C29108ACB00927E13 /* SimpleLineIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2954ECB1290EF46400E4FFB6 /* GoogleService-Info.plist in Resources */,
@@ -477,7 +493,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mealo;
 				PRODUCT_NAME = mealo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -502,7 +518,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mealo;
 				PRODUCT_NAME = mealo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
