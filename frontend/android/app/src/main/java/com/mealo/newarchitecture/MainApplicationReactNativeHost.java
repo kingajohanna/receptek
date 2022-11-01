@@ -1,4 +1,4 @@
-package com.mealo.newarchitecture;
+package hu.mealo.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.mealo.BuildConfig;
-import com.mealo.newarchitecture.components.MainComponentsRegistry;
-import com.mealo.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import hu.mealo.BuildConfig;
+import hu.mealo.newarchitecture.components.MainComponentsRegistry;
+import hu.mealo.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

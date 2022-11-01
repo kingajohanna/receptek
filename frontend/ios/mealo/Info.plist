@@ -23,9 +23,18 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>hu.mealo</string>
+            <!-- This url scheme doesn't contain :// at the end - E.G. "mycustomscheme"-->
+        </array>
+    </dict>
+		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.mealo</string>
+				<string>hu.mealo</string>
 			</array>
 		</dict>
 		<dict>

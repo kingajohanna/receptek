@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:454226409378:android:19fe4e536d22a1c58024fb",
         "android_client_info": {
-          "package_name": "com.mealo"
+          "package_name": "hu.mealo"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "454226409378-226ul71opi4ovk5t0ukgfo8purevvbei.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mealo",
+            "package_name": "hu.mealo",
             "certificate_hash": "4b0aca68ac3b5ee8a6fecb68e83f8737fb40cc8d"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "454226409378-2lpgl2munagbd2397mnalbakcn80eocg.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mealo"
+                "bundle_id": "hu.mealo"
               }
             }
           ]

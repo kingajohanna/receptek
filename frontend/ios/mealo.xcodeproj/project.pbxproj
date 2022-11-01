@@ -14,9 +14,13 @@
 		2954ECB1290EF46400E4FFB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */; };
 		2995288C29108ACB00927E13 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2995288B291087C400927E13 /* SimpleLineIcons.ttf */; };
 		2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2995288D29108D5400927E13 /* Fontisto.ttf */; };
-		79FBAA66AF1E9C28B548297E /* Pods_mealo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC588ED83C53C7B5CE51B90 /* Pods_mealo.framework */; };
+		299528962911996700927E13 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299528952911996700927E13 /* ShareViewController.swift */; };
+		299528992911996700927E13 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299528972911996700927E13 /* MainInterface.storyboard */; };
+		2995289D2911996700927E13 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 299528932911996700927E13 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B88121DF03B05785D496E9BA /* Pods_mealo_mealoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5541DD01D00A7377C526B3B /* Pods_mealo_mealoTests.framework */; };
+		8266AE8AEFB5847C4444BA31 /* libPods-mealo-mealoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B63916AC2509D7B6952C96 /* libPods-mealo-mealoTests.a */; };
+		A10019E590520E2F56B260BC /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1D01FD7F1FA13B2C9497EE /* libPods-ShareExtension.a */; };
+		F507C09D446A6DC7B9EF24A3 /* libPods-mealo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A706A595A3514005635766 /* libPods-mealo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +31,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = mealo;
 		};
+		2995289B2911996700927E13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 299528922911996700927E13;
+			remoteInfo = ShareExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2995289E2911996700927E13 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2995289D2911996700927E13 /* ShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* mealoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mealoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,13 +67,21 @@
 		2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2995288B291087C400927E13 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		2995288D29108D5400927E13 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		299528932911996700927E13 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		299528952911996700927E13 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		299528982911996700927E13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2995289A2911996700927E13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299528A229119AD000927E13 /* mealo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = mealo.entitlements; path = mealo/mealo.entitlements; sourceTree = "<group>"; };
+		35A706A595A3514005635766 /* libPods-mealo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-mealo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo.debug.xcconfig"; path = "Target Support Files/Pods-mealo/Pods-mealo.debug.xcconfig"; sourceTree = "<group>"; };
+		46B63916AC2509D7B6952C96 /* libPods-mealo-mealoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealo-mealoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5709B34CF0A7D63546082F79 /* Pods-mealo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo.release.xcconfig"; path = "Target Support Files/Pods-mealo/Pods-mealo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-mealo-mealoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo-mealoTests.debug.xcconfig"; path = "Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6C5C641B82E7880F17D46FCD /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = mealo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-mealo-mealoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo-mealoTests.release.xcconfig"; path = "Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests.release.xcconfig"; sourceTree = "<group>"; };
-		8BC588ED83C53C7B5CE51B90 /* Pods_mealo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mealo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5541DD01D00A7377C526B3B /* Pods_mealo_mealoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mealo_mealoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FD75B826C75BE92C7B9BD19 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		EC1D01FD7F1FA13B2C9497EE /* libPods-ShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -57,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B88121DF03B05785D496E9BA /* Pods_mealo_mealoTests.framework in Frameworks */,
+				8266AE8AEFB5847C4444BA31 /* libPods-mealo-mealoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +98,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79FBAA66AF1E9C28B548297E /* Pods_mealo.framework in Frameworks */,
+				F507C09D446A6DC7B9EF24A3 /* libPods-mealo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299528902911996700927E13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10019E590520E2F56B260BC /* libPods-ShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +133,7 @@
 		13B07FAE1A68108700A75B9A /* mealo */ = {
 			isa = PBXGroup;
 			children = (
+				299528A229119AD000927E13 /* mealo.entitlements */,
 				29952888291086F700927E13 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -112,12 +154,23 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		299528942911996700927E13 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				299528952911996700927E13 /* ShareViewController.swift */,
+				299528972911996700927E13 /* MainInterface.storyboard */,
+				2995289A2911996700927E13 /* Info.plist */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				8BC588ED83C53C7B5CE51B90 /* Pods_mealo.framework */,
-				B5541DD01D00A7377C526B3B /* Pods_mealo_mealoTests.framework */,
+				EC1D01FD7F1FA13B2C9497EE /* libPods-ShareExtension.a */,
+				35A706A595A3514005635766 /* libPods-mealo.a */,
+				46B63916AC2509D7B6952C96 /* libPods-mealo-mealoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +189,7 @@
 				13B07FAE1A68108700A75B9A /* mealo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* mealoTests */,
+				299528942911996700927E13 /* ShareExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -150,6 +204,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* mealo.app */,
 				00E356EE1AD99517003FC87E /* mealoTests.xctest */,
+				299528932911996700927E13 /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +216,8 @@
 				5709B34CF0A7D63546082F79 /* Pods-mealo.release.xcconfig */,
 				5B7EB9410499542E8C5724F5 /* Pods-mealo-mealoTests.debug.xcconfig */,
 				89C6BE57DB24E9ADA2F236DE /* Pods-mealo-mealoTests.release.xcconfig */,
+				6C5C641B82E7880F17D46FCD /* Pods-ShareExtension.debug.xcconfig */,
+				9FD75B826C75BE92C7B9BD19 /* Pods-ShareExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -176,7 +233,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
+				CA5EB855A62B1D8C69BD03EB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,17 +255,38 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				BF9DC4B1377993BA68D364B1 /* [CP-User] [RNFB] Core Configuration */,
+				2995289E2911996700927E13 /* Embed Foundation Extensions */,
+				E5CE11403C1D6DB27F860C7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2995289C2911996700927E13 /* PBXTargetDependency */,
 			);
 			name = mealo;
 			productName = mealo;
 			productReference = 13B07F961A680F5B00A75B9A /* mealo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		299528922911996700927E13 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 299528A12911996700927E13 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				DD67E4D519F34B25C7632767 /* [CP] Check Pods Manifest.lock */,
+				2995288F2911996700927E13 /* Sources */,
+				299528902911996700927E13 /* Frameworks */,
+				299528912911996700927E13 /* Resources */,
+				6445FAFD72F03BB423E85511 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = 299528932911996700927E13 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -216,6 +294,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -224,6 +303,9 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+					};
+					299528922911996700927E13 = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
@@ -242,6 +324,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* mealo */,
 				00E356ED1AD99517003FC87E /* mealoTests */,
+				299528922911996700927E13 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -266,6 +349,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		299528912911996700927E13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299528992911996700927E13 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -283,21 +374,21 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		6445FAFD72F03BB423E85511 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ShareExtension/Pods-ShareExtension-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ShareExtension/Pods-ShareExtension-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShareExtension/Pods-ShareExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -357,21 +448,60 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+		CA5EB855A62B1D8C69BD03EB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mealo-mealoTests/Pods-mealo-mealoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD67E4D519F34B25C7632767 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShareExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5CE11403C1D6DB27F860C7A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mealo/Pods-mealo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -413,6 +543,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2995288F2911996700927E13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299528962911996700927E13 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -421,7 +559,23 @@
 			target = 13B07F861A680F5B00A75B9A /* mealo */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		2995289C2911996700927E13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 299528922911996700927E13 /* ShareExtension */;
+			targetProxy = 2995289B2911996700927E13 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		299528972911996700927E13 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				299528982911996700927E13 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
@@ -479,9 +633,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-mealo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = mealo/mealo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q43657S2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = mealo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -493,7 +650,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mealo;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.mealo;
 				PRODUCT_NAME = mealo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -505,9 +662,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-mealo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = mealo/mealo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3Q43657S2;
 				INFOPLIST_FILE = mealo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -518,10 +678,88 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mealo;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.mealo;
 				PRODUCT_NAME = mealo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2995289F2911996700927E13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C5C641B82E7880F17D46FCD /* Pods-ShareExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N3Q43657S2;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.mealo.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		299528A02911996700927E13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FD75B826C75BE92C7B9BD19 /* Pods-ShareExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = N3Q43657S2;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.mealo.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -677,6 +915,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		299528A12911996700927E13 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2995289F2911996700927E13 /* Debug */,
+				299528A02911996700927E13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
