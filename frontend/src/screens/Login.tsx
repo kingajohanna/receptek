@@ -39,13 +39,16 @@ export const Login = () => {
 
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-      const user = await auth().signInWithCredential(googleCredential);
+      await auth().signInWithCredential(googleCredential);
 
-      userStore.setUser(user);
+      userStore.setIsLoggedIn(true);
 
       return;
-    } catch {
-      return Alert.alert(en.auth.error);
+    } catch (error) {
+      // The user canceled the sign in request
+      if (error.code === '-5') return;
+      // else
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
     }
   };
 
@@ -63,23 +66,35 @@ export const Login = () => {
         !password.match(firebasePassword) ||
         !email.match(firebaseEmail)
       ) {
-        return Alert.alert(en.auth.error);
+        return Alert.alert(en.auth.error.title, en.auth.error.text);
       }
-      const user = await auth().createUserWithEmailAndPassword(email, password);
-      userStore.setUser(user);
+
+      await auth().createUserWithEmailAndPassword(email, password);
+      userStore.setIsLoggedIn(true);
+
       return;
     } catch {
-      return Alert.alert(en.auth.error);
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
     }
   };
 
   const onLogin = async (email: string, password: string) => {
     try {
-      const user = await auth().signInWithEmailAndPassword(email, password);
-      userStore.setUser(user);
+      if (
+        !password ||
+        !email ||
+        !password.match(firebasePassword) ||
+        !email.match(firebaseEmail)
+      ) {
+        return Alert.alert(en.auth.error.title, en.auth.error.text);
+      }
+
+      await auth().signInWithEmailAndPassword(email, password);
+      userStore.setIsLoggedIn(true);
+
       return;
     } catch {
-      return Alert.alert(en.auth.error);
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
     }
   };
 
@@ -88,7 +103,7 @@ export const Login = () => {
       await auth().sendPasswordResetEmail(email);
       return;
     } catch {
-      return Alert.alert(en.auth.error);
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
     }
   };
 

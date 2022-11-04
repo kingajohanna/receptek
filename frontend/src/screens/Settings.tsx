@@ -1,16 +1,8 @@
 import * as React from 'react';
-import {
-  Button,
-  Text,
-  View,
-  StyleSheet,
-  StatusBar,
-  Pressable,
-  Alert,
-} from 'react-native';
+import {Button, Text, View, StyleSheet, Pressable, Alert} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import {ScreenBackground} from '../components/TabHeader';
+import {ScreenBackground} from '../components/Background';
 import {Tabs} from '../navigation/tabs';
 import {Colors} from '../theme/colors';
 import auth from '@react-native-firebase/auth';
@@ -32,25 +24,23 @@ export const Settings = () => {
           onPress: () => {
             auth()
               .signOut()
-              .then(() => userStore.setUser(undefined));
+              .then(() => userStore.setIsLoggedIn(false));
           },
         },
       ]);
     } catch (error) {
-      return Alert.alert(en.auth.error);
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
     }
   };
 
   return (
     <ScreenBackground title={Tabs.SETTINGS}>
-      <View style={{flex: 1, alignItems: 'center'}}>
-        <Pressable style={styles.buttonContainer} onPress={() => onSignout()}>
-          <View style={styles.iconContainer}>
-            <SimpleLineIcons name="logout" size={20} />
-          </View>
-          <Text style={styles.text}>Logout</Text>
-        </Pressable>
-      </View>
+      <Pressable style={styles.buttonContainer} onPress={() => onSignout()}>
+        <View style={styles.iconContainer}>
+          <SimpleLineIcons name="logout" size={20} />
+        </View>
+        <Text style={styles.text}>Logout</Text>
+      </Pressable>
     </ScreenBackground>
   );
 };

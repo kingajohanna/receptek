@@ -11,16 +11,43 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {androidBottomPadding} from '../utils/androidHelper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {createStackNavigator} from '@react-navigation/stack';
+import {RecipeDetails} from '../screens/RecipeDetails';
+import {DrawerActions} from '@react-navigation/native';
+import {Recipe} from '../types/recipe';
+
+export type RecipeStackParamList = {
+  Recipes: undefined;
+  Recipe: {recipe: Recipe};
+};
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator<RecipeStackParamList>();
+
+function RecipeNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Tabs.RECIPES}
+        component={Recipes}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Tabs.RECIPE}
+        component={RecipeDetails}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export const AppNavigator = () => {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor: Colors.background}}>
       <Tab.Navigator
         activeColor={Colors.verdigris}
         inactiveColor={Colors.teal}
-        initialRouteName={Tabs.RECIPES}
+        initialRouteName={Tabs.RECIPENAVIGATOR}
         shifting={true}
         barStyle={styles.tabBar}>
         <Tab.Screen
@@ -34,8 +61,8 @@ export const AppNavigator = () => {
           }}
         />
         <Tab.Screen
-          name={Tabs.RECIPES}
-          component={Recipes}
+          name={Tabs.RECIPENAVIGATOR}
+          component={RecipeNavigator}
           options={{
             tabBarLabel: Tabs.RECIPES,
             tabBarIcon: ({color}) => (

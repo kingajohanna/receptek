@@ -432,7 +432,7 @@ PODS:
   - RNScreens (3.18.2):
     - React-Core
     - React-RCTImage
-  - RNShareMenu (6.0.0):
+  - RNShareMenu (5.0.2):
     - React
   - RNSVG (13.4.0):
     - React-Core
@@ -640,10 +640,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
   RNGoogleSignin: 9d340306008a521fc2b6627443fec0d91fed781b
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
-  RNShareMenu: cb9dac548c8bf147d06f0bf07296ad51ea9f5fc3
+  RNShareMenu: fefca627ce5cbe7999655b7126ba4d07193fd2b9
   RNSVG: 07dbd870b0dcdecc99b3a202fa37c8ca163caec2
   Yoga: 6671cf077f614314c22fd09ddf87d7abeee64e96
 
-PODFILE CHECKSUM: 3c1cfe562fe424ba7d8f1dc482ae0aca620b2cbc
+PODFILE CHECKSUM: 8e63bd1135cbafd8b4151903fb5e33667d2ea188
 
 COCOAPODS: 1.11.3

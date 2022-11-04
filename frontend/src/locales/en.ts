@@ -12,6 +12,9 @@ export default {
       signup: 'Sign up',
       login: 'Log in',
     },
-    error: 'Something went wrong',
+    error: {
+      title: 'Oops...',
+      text: 'Something went wrong',
+    },
   },
 };

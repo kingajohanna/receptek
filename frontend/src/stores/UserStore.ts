@@ -1,5 +1,5 @@
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {action, computed, makeAutoObservable, observable} from 'mobx';
+import {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {makeAutoObservable} from 'mobx';
 
 export default class UserStore {
   constructor() {
@@ -8,15 +8,14 @@ export default class UserStore {
 
   isLoggedIn = false;
 
-  user: FirebaseAuthTypes.UserCredential | undefined = undefined;
+  user: FirebaseAuthTypes.User | undefined = undefined;
 
   setIsLoggedIn(login: boolean) {
     this.isLoggedIn = login;
+    this.setUser(firebase.auth().currentUser || undefined);
   }
 
-  setUser(user: FirebaseAuthTypes.UserCredential | undefined) {
+  setUser(user: FirebaseAuthTypes.User | undefined) {
     this.user = user;
-    if (user) this.setIsLoggedIn(true);
-    else this.setIsLoggedIn(false);
   }
 }

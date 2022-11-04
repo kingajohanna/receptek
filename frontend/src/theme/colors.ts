@@ -5,5 +5,7 @@ export const Colors = {
   teal: '#168389',
   verdigris: '#00ABB3',
   text: '#01161E',
-  gainsboro: '#E5E9E9',
+  gainsboro: '#EEEEEE',
+  background: '#fbfaf8',
+  white: '#ffffff',
 };
