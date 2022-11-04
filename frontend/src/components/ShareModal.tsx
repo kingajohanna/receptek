@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Pressable, Image, StyleSheet, Button} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  StyleSheet,
+  Button,
+  Modal,
+} from 'react-native';
 import {ShareMenuReactView} from 'react-native-share-menu';
 
 const Share = () => {
@@ -18,37 +26,7 @@ const Share = () => {
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Dismiss"
-        onPress={() => {
-          ShareMenuReactView.dismissExtension();
-        }}
-      />
-      <Button
-        title="Send"
-        onPress={() => {
-          // Share something before dismissing
-          ShareMenuReactView.dismissExtension();
-        }}
-      />
-      <Button
-        title="Dismiss with Error"
-        onPress={() => {
-          ShareMenuReactView.dismissExtension('Something went wrong!');
-        }}
-      />
-      <Button
-        title="Continue In App"
-        onPress={() => {
-          ShareMenuReactView.continueInApp();
-        }}
-      />
-      <Button
-        title="Continue In App With Extra Data"
-        onPress={() => {
-          ShareMenuReactView.continueInApp({hello: 'from the other side'});
-        }}
-      />
+      <Text style={{fontSize: 24}}>Add this recipe to Mealo</Text>
       {sharedMimeType === 'text/plain' && <Text>{sharedData}</Text>}
       {sharedMimeType.startsWith('image/') && (
         <Image
@@ -57,14 +35,45 @@ const Share = () => {
           source={{uri: sharedData}}
         />
       )}
+      <View style={{flexDirection: 'row'}}>
+        <Button
+          title="Dismiss"
+          onPress={() => {
+            ShareMenuReactView.dismissExtension();
+          }}
+        />
+        <Button
+          title="Send"
+          onPress={async () => {
+            console.log('asdasd');
+
+            const response = await fetch(
+              'http://192.168.1.168:8000/recipe/add',
+              {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  url: sharedData,
+                }),
+              },
+            );
+            setSharedData(JSON.stringify(response.body));
+            //ShareMenuReactView.dismissExtension();
+          }}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'white',
+    alignItems: 'center',
+    marginTop: 20,
   },
   header: {
     flexDirection: 'row',
