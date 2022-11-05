@@ -15,11 +15,40 @@ import {useNavigation} from '@react-navigation/core';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RecipeStackParamList} from '../navigation/AppNavigator';
 import {Recipe} from '../types/recipe';
-import ShareMenu from 'react-native-share-menu';
+import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
 
 export const Recipes = observer(() => {
   const {recipeStore} = useStore();
   const navigation = useNavigation<StackNavigationProp<RecipeStackParamList>>();
+  const [sharedData, setSharedData] = useState('');
+  const [sharedMimeType, setSharedMimeType] = useState('');
+
+  const handleShare: ShareCallback = useCallback((share?: ShareData) => {
+    if (!share) {
+      return;
+    }
+
+    const {mimeType, data, extraData} = share;
+
+    setSharedData(data);
+    setSharedMimeType(mimeType);
+    // You can receive extra data from your custom Share View
+    console.log(extraData);
+  }, []);
+
+  useEffect(() => {
+    ShareMenu.getInitialShare(handleShare);
+    console.log('kaki1');
+  }, []);
+
+  useEffect(() => {
+    const listener = ShareMenu.addNewShareListener(handleShare);
+    console.log('kaki2');
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   const accessPage = (recipe: Recipe) =>
     navigation.navigate(Tabs.RECIPE, {recipe});
@@ -46,6 +75,7 @@ export const Recipes = observer(() => {
             console.log(response);
           }}
         />
+        <Text>{sharedData}</Text>
         <ScrollView
           contentContainerStyle={{
             width: '100%',

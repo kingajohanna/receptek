@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Button,
   Modal,
+  AppRegistry,
 } from 'react-native';
 import {ShareMenuReactView} from 'react-native-share-menu';
 
