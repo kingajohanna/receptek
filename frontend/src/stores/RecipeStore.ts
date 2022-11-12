@@ -1,4 +1,5 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
+import {getRecipes} from '../constants/backend';
 import {Recipe, testRecipe} from '../types/recipe';
 
 export default class RecipeStore {
@@ -6,10 +7,13 @@ export default class RecipeStore {
     makeAutoObservable(this, {}, {autoBind: true});
   }
 
-  recipes: Recipe[] = [testRecipe, testRecipe, testRecipe];
+  recipes: Recipe[] = [];
 
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
+  async setRecipes() {
+    const recipes = await getRecipes();
+    runInAction(() => {
+      this.recipes = recipes;
+    });
   }
 
   removeRecipe(recipe: Recipe) {

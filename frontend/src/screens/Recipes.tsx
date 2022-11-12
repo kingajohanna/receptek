@@ -10,12 +10,13 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RecipeStackParamList} from '../navigation/AppNavigator';
 import {Recipe} from '../types/recipe';
 import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
-import {addRecipe} from '../constants/backend';
+import {addRecipe, getRecipes} from '../constants/backend';
 import {urlCheck} from '../utils/regex';
 
 export const Recipes = observer(() => {
   const {recipeStore} = useStore();
   const navigation = useNavigation<StackNavigationProp<RecipeStackParamList>>();
+  const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
 
   const handleShare: ShareCallback = useCallback((share?: ShareData) => {
     if (!share) {
@@ -59,6 +60,11 @@ export const Recipes = observer(() => {
     };
   });
 
+  useEffect(() => {
+    //getRecipes();
+    recipeStore.setRecipes();
+  }, []);
+
   const accessPage = (recipe: Recipe) =>
     navigation.navigate(Tabs.RECIPE, {recipe});
 
@@ -71,10 +77,7 @@ export const Recipes = observer(() => {
           }}>
           {recipeStore.recipes.map((recipe, index) => (
             <RecipeListComponent
-              title={recipe.title}
-              image={{
-                uri: recipe.image,
-              }}
+              recipe={recipe}
               key={'recipe' + index}
               onPress={() => accessPage(recipe)}
             />

@@ -87,7 +87,7 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
             {instructions.map((instruction, index) => {
               return (
                 <Text style={[styles.text]} key={'instruction' + index}>
-                  {instruction}
+                  {index + 1}. {instruction}
                 </Text>
               );
             })}
@@ -100,12 +100,12 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontSize: 18,
     lineHeight: 28,
   },
   text: {
-    fontSize: 18,
-    lineHeight: 28,
+    fontSize: 16,
+    lineHeight: 22,
     paddingLeft: 20,
   },
 });

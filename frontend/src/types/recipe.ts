@@ -1,9 +1,22 @@
 export type Recipe = {
   title: string;
-  totalTime: string;
+  totalTime: string | undefined;
   ingredients: string[];
   instructions: string[];
   image: string;
+  author?: string;
+  canonical_url?: string;
+  category?: string;
+  cookTime?: string;
+  cuisine?: string;
+  description?: string;
+  host?: string;
+  language?: string;
+  nutrients?: string;
+  prepTime?: string;
+  ratings?: string;
+  reviews?: string;
+  siteName?: string;
 };
 
 export const testRecipe: Recipe = {

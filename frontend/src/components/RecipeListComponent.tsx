@@ -12,15 +12,14 @@ import {
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Colors} from '../theme/colors';
+import {Recipe} from '../types/recipe';
 
 type ScreenBackgroundProps = {
-  title: string;
-  image: ImageSourcePropType;
+  recipe: Recipe;
 } & PressableProps;
 
 export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
-  title,
-  image,
+  recipe,
   onPress,
 }) => {
   const swipeableRef = useRef<Swipeable | null>(null);
@@ -76,15 +75,21 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
     <Swipeable renderRightActions={renderRightActions} ref={swipeableRef}>
       <Pressable style={styles.background} onPress={onPress}>
         <ImageBackground
-          source={image}
+          source={{
+            uri: recipe.image,
+          }}
           resizeMode="cover"
           style={styles.image}
           imageStyle={{borderRadius: 15}}>
           <View style={styles.overlay} />
           <View style={{padding: 15, paddingLeft: 30}}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.text}>{title}</Text>
-            <Text style={styles.text}>{title}</Text>
+            <Text style={styles.title}>{recipe.title}</Text>
+            {recipe.category && (
+              <Text style={styles.text}>{recipe.category}</Text>
+            )}
+            {recipe.totalTime && (
+              <Text style={styles.text}>{recipe.totalTime}</Text>
+            )}
           </View>
         </ImageBackground>
       </Pressable>
