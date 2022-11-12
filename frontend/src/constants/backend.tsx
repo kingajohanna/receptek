@@ -2,9 +2,9 @@ import auth from '@react-native-firebase/auth';
 import {Recipe} from '../types/recipe';
 
 const baseUrl = 'http://192.168.1.168:8080/';
-export const addRecipeURL = baseUrl + 'recipe/add';
+export const addRecipeURL = baseUrl + 'recipe/add/';
 
-export const getRecipeURL = baseUrl + 'recipe/get';
+export const getRecipeURL = baseUrl + 'recipe/get/';
 
 export const addRecipe = async (url: string) => {
   const token = await auth().currentUser?.getIdToken(true);
@@ -28,7 +28,6 @@ export const addRecipe = async (url: string) => {
 
 export const getRecipes = async () => {
   const token = await auth().currentUser?.getIdToken(true);
-  const userID = auth().currentUser?.uid;
   console.log(token);
 
   const response = await fetch(getRecipeURL, {

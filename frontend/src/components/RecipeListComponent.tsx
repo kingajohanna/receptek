@@ -87,8 +87,9 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
             {recipe.category && (
               <Text style={styles.text}>{recipe.category}</Text>
             )}
+            {recipe.yields && <Text style={styles.text}>{recipe.yields}</Text>}
             {recipe.totalTime && (
-              <Text style={styles.text}>{recipe.totalTime}</Text>
+              <Text style={styles.text}>{recipe.totalTime} min</Text>
             )}
           </View>
         </ImageBackground>
@@ -101,9 +102,8 @@ const styles = StyleSheet.create({
   background: {
     width: '100%',
     height: 180,
-
     alignSelf: 'center',
-    padding: 12,
+    padding: 8,
   },
   image: {
     flex: 1,

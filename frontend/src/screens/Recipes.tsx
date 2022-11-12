@@ -26,7 +26,8 @@ export const Recipes = observer(() => {
     const {data} = share;
     const url = Array.isArray(data) ? data[0] : data;
 
-    if (url.match(urlCheck) && Platform.OS === 'ios') addRecipe(url);
+    if (url.match(urlCheck) && Platform.OS === 'ios')
+      addRecipe(url).then(() => recipeStore.setRecipes());
     else {
       Alert.alert(
         'Add recipe',
@@ -39,8 +40,8 @@ export const Recipes = observer(() => {
           },
           {
             text: 'OK',
-            onPress: async () => {
-              await addRecipe(url);
+            onPress: () => {
+              addRecipe(url).then(() => recipeStore.setRecipes());
             },
           },
         ],
@@ -59,11 +60,6 @@ export const Recipes = observer(() => {
       listener.remove();
     };
   });
-
-  useEffect(() => {
-    //getRecipes();
-    recipeStore.setRecipes();
-  }, []);
 
   const accessPage = (recipe: Recipe) =>
     navigation.navigate(Tabs.RECIPE, {recipe});

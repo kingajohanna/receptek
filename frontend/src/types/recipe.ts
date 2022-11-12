@@ -17,6 +17,7 @@ export type Recipe = {
   ratings?: string;
   reviews?: string;
   siteName?: string;
+  yields?: string;
 };
 
 export const testRecipe: Recipe = {
