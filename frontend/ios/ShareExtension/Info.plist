@@ -17,8 +17,7 @@
 	<key>HostAppBundleIdentifier</key>
 <string>hu.mealo</string>
 <key>HostAppURLScheme</key>
-<string>hu.mealo://</string>
-<!-- This url scheme CONTAINS :// at the end - E.G. "mycustomscheme://"-->
+<string>hu.mealo:/</string>
 <key>NSExtension</key>
 <dict>
     <key>NSExtensionAttributes</key>
@@ -42,13 +41,13 @@
 <key>ReactShareViewBackgroundColor</key>
 <dict>
     <key>Red</key>
-    <integer>1</integer>
+    <real>1</real>
     <key>Green</key>
-    <integer>1</integer>
+    <real>1</real>
     <key>Blue</key>
-    <integer>1</integer>
+    <real>1</real>
     <key>Alpha</key>
-    <integer>1</integer>
+    <real>1</real>
     <key>Transparent</key>
     <false/>
 </dict>

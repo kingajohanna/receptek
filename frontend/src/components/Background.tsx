@@ -10,24 +10,26 @@ type ScreenBackgroundProps = {
 /**
  *    base background, with header and optinal error message
  */
-export const ScreenBackground: React.FC<ScreenBackgroundProps> = props => (
-  <SafeAreaView
-    style={{
-      backgroundColor: Colors.gainsboro,
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-      flex: 1,
-    }}>
-    <View style={styles.background}>
-      {!props.withoutHeader && (
-        <View style={styles.header}>
-          <Text style={styles.text}>{props.title}</Text>
-        </View>
-      )}
-      {props.children}
-    </View>
-  </SafeAreaView>
-);
+export const ScreenBackground: React.FC<ScreenBackgroundProps> = props => {
+  return (
+    <SafeAreaView
+      style={{
+        backgroundColor: Colors.gainsboro,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
+        flex: 1,
+      }}>
+      <View style={styles.background}>
+        {!props.withoutHeader && (
+          <View style={styles.header}>
+            <Text style={styles.text}>{props.title}</Text>
+          </View>
+        )}
+        {props.children}
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   background: {

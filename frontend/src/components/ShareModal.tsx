@@ -1,80 +1,83 @@
 import React, {useEffect, useState} from 'react';
 import {
   View,
-  Text,
-  Pressable,
-  Image,
   StyleSheet,
+  TouchableOpacity,
+  Dimensions,
   Button,
-  Modal,
-  AppRegistry,
+  Image,
+  Text,
 } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import {ShareMenuReactView} from 'react-native-share-menu';
+import Dialog from 'react-native-dialog';
+
+const height = Dimensions.get('window').height;
 
 const Share = () => {
   const [sharedData, setSharedData] = useState('');
   const [sharedMimeType, setSharedMimeType] = useState('');
-  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     console.log('effect called');
     ShareMenuReactView.data().then(({mimeType, data}) => {
-      console.log(data);
       setSharedData(data);
       setSharedMimeType(mimeType);
     });
   }, []);
 
+  const copyToClipboard = () => {
+    Clipboard.setString('hello world');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 24}}>Add this recipe to Mealo</Text>
-      {sharedMimeType === 'text/plain' && <Text>{sharedData}</Text>}
-      {sharedMimeType.startsWith('image/') && (
-        <Image
-          style={styles.image}
-          resizeMode="contain"
-          source={{uri: sharedData}}
-        />
-      )}
-      <View style={{flexDirection: 'row'}}>
-        <Button
-          title="Dismiss"
+    <View>
+      <Dialog.Container visible={true}>
+        <Dialog.Title>Add recipe</Dialog.Title>
+        <Dialog.Description>asd</Dialog.Description>
+        <Dialog.Button
+          label="Dismiss"
           onPress={() => {
             ShareMenuReactView.dismissExtension();
           }}
         />
-        <Button
-          title="Send"
-          onPress={async () => {
-            console.log('asdasd');
-
-            const response = await fetch(
-              'http://192.168.1.168:8000/recipe/add',
-              {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  url: sharedData,
-                }),
-              },
-            );
-            setSharedData(JSON.stringify(response.body));
-            //ShareMenuReactView.dismissExtension();
+        <Dialog.Button
+          label="Add"
+          onPress={() => {
+            copyToClipboard();
+            ShareMenuReactView.continueInApp({hello: 'from the other side'});
           }}
         />
-      </View>
+      </Dialog.Container>
     </View>
   );
 };
+/*
+<Dialog.Container visible={true}>
+          <Dialog.Title>Add recipe</Dialog.Title>
+          <Dialog.Description>asd</Dialog.Description>
+          <Dialog.Button
+            label="Dismiss"
+            onPress={() => {
+              ShareMenuReactView.dismissExtension();
+            }}
+          />
+          <Dialog.Button
+            label="Add"
+            onPress={() => {
+              ShareMenuReactView.continueInApp({url: 'kaki'});
+            }}
+          />
+        </Dialog.Container>
+        */
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    position: 'absolute',
+    top: height / 3,
+    width: '100%',
+    backgroundColor: 'transparent',
     alignItems: 'center',
-    marginTop: 20,
   },
   header: {
     flexDirection: 'row',

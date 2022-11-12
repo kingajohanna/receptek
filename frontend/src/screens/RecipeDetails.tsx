@@ -12,13 +12,15 @@ type Props = StackScreenProps<RecipeStackParamList, 'Recipe'>;
 
 export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
   const {recipe} = route.params;
+  console.log(JSON.stringify(recipe));
 
   return (
     <ScreenBackground title={''} withoutHeader>
-      <View style={{paddingTop: 20, width: '100%', flex: 1}}>
-        <Image source={{uri: recipe.image}} />
+      <ScrollView style={{width: '100%', flex: 1}}>
+        <Image source={{uri: recipe.image}} style={{height: 220}} />
+
         <Text>{recipe.title}</Text>
-      </View>
+      </ScrollView>
     </ScreenBackground>
   );
 };
