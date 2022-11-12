@@ -22,6 +22,7 @@ class PyObjectId(ObjectId):
 
 class RecipeModel(BaseModel):
     id: str = Field(default_factory=PyObjectId, alias='_id')
+    user_id: list[str] = Field()
     host: str = Field(...)
     canonical_url: Optional[str]
     title: str = Field(...)

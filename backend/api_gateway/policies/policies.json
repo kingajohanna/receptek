@@ -1,0 +1,20 @@
+{
+    "default": {
+        "rate": 1000,
+        "per": 1,
+        "quota_max": 100,
+        "quota_renewal_rate": 60,
+        "access_rights": {
+          "fc55a654-6a1d-4b4b-8f83-19b4831f459a": {
+            "api_name": "Recipe API",
+            "api_id": "fc55a654-6a1d-4b4b-8f83-19b4831f459a",
+            "versions": [
+              "Default"
+            ]
+          }
+        },
+        "hmac_enabled": false,
+        "active": true
+    }
+  }
+  
