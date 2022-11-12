@@ -6,7 +6,7 @@ export default class RecipeStore {
     makeAutoObservable(this, {}, {autoBind: true});
   }
 
-  recipes: Recipe[] = [testRecipe];
+  recipes: Recipe[] = [testRecipe, testRecipe, testRecipe];
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);

@@ -23,15 +23,6 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>hu.mealo</string>
-            <!-- This url scheme doesn't contain :// at the end - E.G. "mycustomscheme"-->
-        </array>
-    </dict>
-		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>hu.mealo</string>
@@ -50,13 +41,15 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-    	<key>NSAllowsArbitraryLoads</key>
-    	<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Fontisto.ttf</string>
 	</array>

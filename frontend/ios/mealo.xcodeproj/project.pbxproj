@@ -18,6 +18,8 @@
 		2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2995288D29108D5400927E13 /* Fontisto.ttf */; };
 		299528992911996700927E13 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299528972911996700927E13 /* MainInterface.storyboard */; };
 		2995289D2911996700927E13 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 299528932911996700927E13 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		299E20B82920066300A02612 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299E20B62920066300A02612 /* MaterialIcons.ttf */; };
+		299E20B92920066300A02612 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299E20B72920066300A02612 /* MaterialCommunityIcons.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8266AE8AEFB5847C4444BA31 /* libPods-mealo-mealoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B63916AC2509D7B6952C96 /* libPods-mealo-mealoTests.a */; };
 		A10019E590520E2F56B260BC /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1D01FD7F1FA13B2C9497EE /* libPods-ShareExtension.a */; };
@@ -75,6 +77,9 @@
 		299528982911996700927E13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		2995289A2911996700927E13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299528A229119AD000927E13 /* mealo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = mealo.entitlements; path = mealo/mealo.entitlements; sourceTree = "<group>"; };
+		299E20B62920066300A02612 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		299E20B72920066300A02612 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		299E20BA2920352200A02612 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		35A706A595A3514005635766 /* libPods-mealo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-mealo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealo.debug.xcconfig"; path = "Target Support Files/Pods-mealo/Pods-mealo.debug.xcconfig"; sourceTree = "<group>"; };
 		46B63916AC2509D7B6952C96 /* libPods-mealo-mealoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealo-mealoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +156,8 @@
 		29952888291086F700927E13 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				299E20B72920066300A02612 /* MaterialCommunityIcons.ttf */,
+				299E20B62920066300A02612 /* MaterialIcons.ttf */,
 				2995288D29108D5400927E13 /* Fontisto.ttf */,
 				2995288B291087C400927E13 /* SimpleLineIcons.ttf */,
 			);
@@ -160,6 +167,7 @@
 		299528942911996700927E13 /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				299E20BA2920352200A02612 /* ShareExtension.entitlements */,
 				2965E9DA2915AB1A00F20992 /* ReactShareViewController.swift */,
 				2965E9D82915AAF800F20992 /* ShareViewController.swift */,
 				299528972911996700927E13 /* MainInterface.storyboard */,
@@ -350,7 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */,
+				299E20B92920066300A02612 /* MaterialCommunityIcons.ttf in Resources */,
 				2995288C29108ACB00927E13 /* SimpleLineIcons.ttf in Resources */,
+				299E20B82920066300A02612 /* MaterialIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2954ECB1290EF46400E4FFB6 /* GoogleService-Info.plist in Resources */,
@@ -681,6 +691,7 @@
 				DEVELOPMENT_TEAM = N3Q43657S2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = mealo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -709,6 +720,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N3Q43657S2;
 				INFOPLIST_FILE = mealo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -736,6 +748,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -777,6 +790,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;

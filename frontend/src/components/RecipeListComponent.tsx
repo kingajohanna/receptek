@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,10 @@ import {
   ImageSourcePropType,
   PressableProps,
   Pressable,
+  Animated,
 } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Colors} from '../theme/colors';
 
 type ScreenBackgroundProps = {
@@ -19,22 +22,75 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
   title,
   image,
   onPress,
-}) => (
-  <Pressable style={styles.background} onPress={onPress}>
-    <ImageBackground
-      source={image}
-      resizeMode="cover"
-      style={styles.image}
-      imageStyle={{borderRadius: 15}}>
-      <View style={styles.overlay} />
-      <View style={{padding: 15, paddingLeft: 30}}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.text}>{title}</Text>
-        <Text style={styles.text}>{title}</Text>
-      </View>
-    </ImageBackground>
-  </Pressable>
-);
+}) => {
+  const swipeableRef = useRef<Swipeable | null>(null);
+
+  const close = () => {
+    if (swipeableRef.current) {
+      swipeableRef.current.close();
+    }
+  };
+
+  const renderRightAction = (text, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [0, 0, 100, 104],
+      outputRange: [0, 0, 0, 0],
+    });
+
+    const pressHandler = () => {
+      close();
+      //todo add/remove fav
+    };
+
+    return (
+      <Animated.View
+        style={{
+          flex: 1,
+          transform: [{translateX: trans}],
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Fontisto
+          name="bookmark"
+          color={Colors.teal}
+          size={32}
+          onPress={() => {
+            pressHandler();
+          }}
+        />
+      </Animated.View>
+    );
+  };
+
+  const renderRightActions = progress => (
+    <View
+      style={{
+        width: 70,
+        flexDirection: 'row',
+      }}>
+      {renderRightAction('More', progress)}
+    </View>
+  );
+
+  return (
+    <Swipeable renderRightActions={renderRightActions} ref={swipeableRef}>
+      <Pressable style={styles.background} onPress={onPress}>
+        <ImageBackground
+          source={image}
+          resizeMode="cover"
+          style={styles.image}
+          imageStyle={{borderRadius: 15}}>
+          <View style={styles.overlay} />
+          <View style={{padding: 15, paddingLeft: 30}}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.text}>{title}</Text>
+            <Text style={styles.text}>{title}</Text>
+          </View>
+        </ImageBackground>
+      </Pressable>
+    </Swipeable>
+  );
+};
 
 const styles = StyleSheet.create({
   background: {
@@ -67,5 +123,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     color: Colors.white,
+  },
+  rightAction: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
 });

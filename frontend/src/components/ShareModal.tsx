@@ -1,14 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Button,
-  Image,
-  Text,
-} from 'react-native';
-import Clipboard from '@react-native-clipboard/clipboard';
+import {View, StyleSheet, Dimensions} from 'react-native';
+
 import {ShareMenuReactView} from 'react-native-share-menu';
 import Dialog from 'react-native-dialog';
 
@@ -16,25 +8,20 @@ const height = Dimensions.get('window').height;
 
 const Share = () => {
   const [sharedData, setSharedData] = useState('');
-  const [sharedMimeType, setSharedMimeType] = useState('');
 
   useEffect(() => {
-    console.log('effect called');
-    ShareMenuReactView.data().then(({mimeType, data}) => {
+    ShareMenuReactView.data().then(({data}) => {
       setSharedData(data);
-      setSharedMimeType(mimeType);
     });
   }, []);
-
-  const copyToClipboard = () => {
-    Clipboard.setString('hello world');
-  };
 
   return (
     <View>
       <Dialog.Container visible={true}>
         <Dialog.Title>Add recipe</Dialog.Title>
-        <Dialog.Description>asd</Dialog.Description>
+        <Dialog.Description>
+          Do you want to add this recipe to your collection?
+        </Dialog.Description>
         <Dialog.Button
           label="Dismiss"
           onPress={() => {
@@ -44,32 +31,13 @@ const Share = () => {
         <Dialog.Button
           label="Add"
           onPress={() => {
-            copyToClipboard();
-            ShareMenuReactView.continueInApp({hello: 'from the other side'});
+            ShareMenuReactView.continueInApp({sharedData});
           }}
         />
       </Dialog.Container>
     </View>
   );
 };
-/*
-<Dialog.Container visible={true}>
-          <Dialog.Title>Add recipe</Dialog.Title>
-          <Dialog.Description>asd</Dialog.Description>
-          <Dialog.Button
-            label="Dismiss"
-            onPress={() => {
-              ShareMenuReactView.dismissExtension();
-            }}
-          />
-          <Dialog.Button
-            label="Add"
-            onPress={() => {
-              ShareMenuReactView.continueInApp({url: 'kaki'});
-            }}
-          />
-        </Dialog.Container>
-        */
 
 const styles = StyleSheet.create({
   container: {

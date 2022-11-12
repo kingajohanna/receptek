@@ -14,10 +14,11 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
-	<key>HostAppBundleIdentifier</key>
+<key>HostAppBundleIdentifier</key>
 <string>hu.mealo</string>
 <key>HostAppURLScheme</key>
-<string>hu.mealo:/</string>
+<string>hu.mealo://</string>
+<!-- This url scheme CONTAINS :// at the end - E.G. "mycustomscheme://"-->
 <key>NSExtension</key>
 <dict>
     <key>NSExtensionAttributes</key>
@@ -41,13 +42,13 @@
 <key>ReactShareViewBackgroundColor</key>
 <dict>
     <key>Red</key>
-    <real>1</real>
+    <integer>1</integer>
     <key>Green</key>
-    <real>1</real>
+    <integer>1</integer>
     <key>Blue</key>
-    <real>1</real>
+    <integer>1</integer>
     <key>Alpha</key>
-    <real>1</real>
+    <integer>1</integer>
     <key>Transparent</key>
     <false/>
 </dict>
