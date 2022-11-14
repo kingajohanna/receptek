@@ -38,7 +38,7 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
 
     const pressHandler = () => {
       close();
-      //todo add/remove fav
+      //TODO add/remove fav
     };
 
     return (
@@ -87,7 +87,9 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
             {recipe.category && (
               <Text style={styles.text}>{recipe.category}</Text>
             )}
-            {recipe.yields && <Text style={styles.text}>{recipe.yields}</Text>}
+            {recipe.cuisine && (
+              <Text style={styles.text}>{recipe.cuisine}</Text>
+            )}
             {recipe.totalTime && (
               <Text style={styles.text}>{recipe.totalTime} min</Text>
             )}
