@@ -20,6 +20,7 @@ import {Divider, List, Menu} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 import Dots from 'react-native-dots-pagination';
 import Dialog from 'react-native-dialog';
+import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('window');
 
@@ -34,7 +35,7 @@ enum EditModalTypes {
 
 export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
   const {recipe} = route.params;
-  const {ingredients, title, totalTime, image} = recipe;
+  const {ingredients, title, totalTime, image, category, cuisine} = recipe;
   const [instructions, setInstructions] = useState(recipe.instructions);
   const [openIngredients, setOpenIngredients] = useState(true);
   const [activeDot, setActiveDot] = useState(0);
@@ -57,11 +58,41 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
       setInstructions(instructions.slice(0, instructions.length - 3));
   });
 
+  const openEditModal = (type: EditModalTypes | undefined) => {
+    switch (type) {
+      case EditModalTypes.title:
+        setEditValue(title || '');
+        setEditModalType(type);
+        break;
+      case EditModalTypes.category:
+        setEditValue(category || '');
+        setEditModalType(type);
+        break;
+      case EditModalTypes.cuisine:
+        setEditValue(cuisine || '');
+        setEditModalType(type);
+        break;
+      case EditModalTypes.time:
+        setEditValue(totalTime || '');
+        setEditModalType(type);
+        break;
+      default:
+        setEditModalType(undefined);
+        break;
+    }
+  };
+
   return (
     <ScreenBackground title={''} withoutHeader>
       <ScrollView style={{width: '100%'}}>
         <View>
-          <Image source={{uri: image}} style={{height: 220}} />
+          <FastImage
+            style={{height: 220}}
+            source={{
+              uri: image,
+              priority: FastImage.priority.normal,
+            }}
+          />
           <View style={styles.imageOverlay} />
           <View style={styles.textOverlay}>
             <View
@@ -89,7 +120,7 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
                 visible={openMenu}
                 onDismiss={() => {
                   setOpenMenu(false);
-                  setEditModalType(undefined);
+                  openEditModal(undefined);
                 }}
                 anchor={
                   <MaterialCommunityIcons
@@ -102,28 +133,28 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
                 <Menu.Item
                   onPress={() => {
                     setOpenMenu(false);
-                    setEditModalType(EditModalTypes.title);
+                    openEditModal(EditModalTypes.title);
                   }}
                   title="Edit title"
                 />
                 <Menu.Item
                   onPress={() => {
                     setOpenMenu(false);
-                    setEditModalType(EditModalTypes.category);
+                    openEditModal(EditModalTypes.category);
                   }}
                   title="Edit category"
                 />
                 <Menu.Item
                   onPress={() => {
                     setOpenMenu(false);
-                    setEditModalType(EditModalTypes.time);
+                    openEditModal(EditModalTypes.time);
                   }}
                   title="Edit total time"
                 />
                 <Menu.Item
                   onPress={() => {
                     setOpenMenu(false);
-                    setEditModalType(EditModalTypes.cuisine);
+                    openEditModal(EditModalTypes.cuisine);
                   }}
                   title="Edit cuisine"
                 />

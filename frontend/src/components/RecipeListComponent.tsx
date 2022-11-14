@@ -9,6 +9,7 @@ import {
   Pressable,
   Animated,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Colors} from '../theme/colors';
@@ -74,13 +75,12 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
   return (
     <Swipeable renderRightActions={renderRightActions} ref={swipeableRef}>
       <Pressable style={styles.background} onPress={onPress}>
-        <ImageBackground
+        <FastImage
+          style={styles.image}
           source={{
             uri: recipe.image,
-          }}
-          resizeMode="cover"
-          style={styles.image}
-          imageStyle={{borderRadius: 15}}>
+            priority: FastImage.priority.normal,
+          }}>
           <View style={styles.overlay} />
           <View style={{padding: 15, paddingLeft: 30}}>
             <Text style={styles.title}>{recipe.title}</Text>
@@ -94,7 +94,7 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
               <Text style={styles.text}>{recipe.totalTime} min</Text>
             )}
           </View>
-        </ImageBackground>
+        </FastImage>
       </Pressable>
     </Swipeable>
   );
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
+    borderRadius: 15,
   },
   overlay: {
     borderRadius: 15,

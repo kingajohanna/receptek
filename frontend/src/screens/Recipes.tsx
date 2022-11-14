@@ -6,10 +6,9 @@ import {
   View,
   Platform,
   TextInput,
-  Text,
   StyleSheet,
-  Button,
   Dimensions,
+  Button,
 } from 'react-native';
 import {ScreenBackground} from '../components/Background';
 import {RecipeListComponent} from '../components/RecipeListComponent';
@@ -20,25 +19,84 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RecipeStackParamList} from '../navigation/AppNavigator';
 import {Recipe} from '../types/recipe';
 import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
-import {addRecipe, getRecipes} from '../constants/backend';
+import {addRecipe} from '../constants/backend';
 import {urlCheck} from '../utils/regex';
 import {FAB, List} from 'react-native-paper';
 import {Colors} from '../theme/colors';
-import {ButtonGroup} from '../components/ButtonGroup';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import {Picker} from '@react-native-picker/picker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {SearchModal} from '../components/SearchModal';
+import {all} from '../stores/RecipeStore';
 
-const {height} = Dimensions.get('window');
+export enum Time {
+  fast = 'fast',
+  medium = 'medium',
+  slow = 'slow',
+}
+
+/*
+const getRecipes = () => {
+    const textFilter = text !== '';
+    const categoryFilter = category !== all;
+    const cuisineFilter = cuisine !== all;
+
+    const filteredRecipes = (keysEvery, valuesEvery) =>
+      recipeStore.recipes.filter(item =>
+        keysEvery.every(key =>
+          valuesEvery.some(val =>
+            item[key]?.toLowerCase().includes(val.toLowerCase()),
+          ),
+        ),
+      );
+
+    if (textFilter && categoryFilter && cuisineFilter) {
+      return setRecipes(
+        filteredRecipes(
+          ['title', 'category', 'cuisine'],
+          [text, category, cuisine],
+        ),
+      );
+    } else if (textFilter && categoryFilter) {
+      return setRecipes(
+        filteredRecipes(['title', 'category'], [text, category]),
+      );
+    } else if (textFilter && cuisineFilter) {
+      return setRecipes(filteredRecipes(['title', 'cuisine'], [text, cuisine]));
+    } else if (cuisineFilter && categoryFilter) {
+      return setRecipes(
+        filteredRecipes(['category', 'cuisine'], [category, cuisine]),
+      );
+    } else if (textFilter) {
+      return setRecipes(filteredRecipes(['title'], [text]));
+    } else if (categoryFilter) {
+      return setRecipes(filteredRecipes(['category'], [category]));
+    } else if (cuisineFilter) {
+      return setRecipes(filteredRecipes(['cuisine'], [cuisine]));
+    } else {
+      return setRecipes(recipeStore.recipes);
+    }
+  };
+    */
 
 export const Recipes = observer(() => {
   const {recipeStore} = useStore();
   const navigation = useNavigation<StackNavigationProp<RecipeStackParamList>>();
-  const [text, onChangeText] = useState('');
-  const [category, setCategory] = useState('');
-  const [categoryOpen, setCategoryOpen] = useState('');
-  const [cuisine, setCuisine] = useState('');
-  const [cuisineOpen, setCuisineOpen] = useState('');
+
+  const [recipes, setRecipes] = useState(recipeStore.recipes);
+  const [text, setText] = useState('');
+  const [category, setCategory] = useState(all);
+  const [cuisine, setCuisine] = useState(all);
+  const [time, setTime] = useState<Time | undefined>(undefined);
 
   const refRBSheet = useRef() as React.MutableRefObject<RBSheet>;
+
+  const reset = () => {
+    setText('');
+    setCategory('');
+    setCuisine('');
+    setTime(undefined);
+  };
 
   const handleShare: ShareCallback = useCallback((share?: ShareData) => {
     if (!share) {
@@ -86,6 +144,48 @@ export const Recipes = observer(() => {
   const accessPage = (recipe: Recipe) =>
     navigation.navigate(Tabs.RECIPE, {recipe});
 
+  useEffect(() => {
+    const textFilter = text !== '';
+    const categoryFilter = category !== all;
+    const cuisineFilter = cuisine !== all;
+
+    const filteredRecipes = (keysEvery, valuesEvery) =>
+      recipeStore.recipes.filter(item =>
+        keysEvery.every(key =>
+          valuesEvery.some(val =>
+            item[key]?.toLowerCase().includes(val.toLowerCase()),
+          ),
+        ),
+      );
+
+    if (textFilter && categoryFilter && cuisineFilter) {
+      return setRecipes(
+        filteredRecipes(
+          ['title', 'category', 'cuisine'],
+          [text, category, cuisine],
+        ),
+      );
+    } else if (textFilter && categoryFilter) {
+      return setRecipes(
+        filteredRecipes(['title', 'category'], [text, category]),
+      );
+    } else if (textFilter && cuisineFilter) {
+      return setRecipes(filteredRecipes(['title', 'cuisine'], [text, cuisine]));
+    } else if (cuisineFilter && categoryFilter) {
+      return setRecipes(
+        filteredRecipes(['category', 'cuisine'], [category, cuisine]),
+      );
+    } else if (textFilter) {
+      return setRecipes(filteredRecipes(['title'], [text]));
+    } else if (categoryFilter) {
+      return setRecipes(filteredRecipes(['category'], [category]));
+    } else if (cuisineFilter) {
+      return setRecipes(filteredRecipes(['cuisine'], [cuisine]));
+    } else {
+      return setRecipes(recipeStore.recipes);
+    }
+  }, [text, category, cuisine, time, recipeStore.recipes]);
+
   return (
     <ScreenBackground title={Tabs.RECIPES}>
       <FAB
@@ -98,7 +198,7 @@ export const Recipes = observer(() => {
           contentContainerStyle={{
             width: '100%',
           }}>
-          {recipeStore.recipes.map((recipe, index) => (
+          {recipes.map((recipe, index) => (
             <RecipeListComponent
               recipe={recipe}
               key={'recipe' + index}
@@ -106,75 +206,19 @@ export const Recipes = observer(() => {
             />
           ))}
         </ScrollView>
-
-        <RBSheet
-          ref={refRBSheet}
-          closeOnDragDown={true}
-          closeOnPressMask={true}
-          height={height * 0.7}
-          customStyles={{
-            wrapper: {
-              backgroundColor: 'rgba(0,0,0,0.5)',
-            },
-            draggableIcon: {
-              backgroundColor: '#000',
-            },
-            container: {
-              borderTopLeftRadius: 15,
-              borderTopRightRadius: 15,
-              padding: 20,
-              paddingTop: 5,
-            },
-          }}>
-          <TextInput
-            style={{
-              borderWidth: 1,
-              padding: 10,
-              borderRadius: 10,
-            }}
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="Search recipes"
-          />
-          <ButtonGroup />
-
-          <View style={{flexDirection: 'row', padding: 8}}>
-            <View style={{width: '50%', paddingRight: 4}}>
-              <List.Accordion
-                title="Ingredients"
-                id="1"
-                expanded
-                onPress={() => {}}
-                style={{
-                  borderRadius: 10,
-                  borderWidth: 1,
-                  padding: 0,
-                  height: 40,
-                }}
-                titleStyle={{color: Colors.teal}}>
-                <List.Item title="First item" />
-                <List.Item title="Second item" />
-              </List.Accordion>
-            </View>
-            <View style={{width: '50%', paddingLeft: 4}}>
-              <List.Accordion
-                title="Ingredients"
-                id="1"
-                expanded
-                onPress={() => {}}
-                style={{
-                  borderRadius: 10,
-                  borderWidth: 1,
-                  padding: 0,
-                  height: 40,
-                }}
-                titleStyle={{color: Colors.teal}}>
-                <List.Item title="First item" />
-                <List.Item title="Second item" />
-              </List.Accordion>
-            </View>
-          </View>
-        </RBSheet>
+        <SearchModal
+          refRBSheet={refRBSheet}
+          onChangeText={setText}
+          text={text}
+          time={time}
+          setTime={setTime}
+          category={category}
+          setCategory={setCategory}
+          cuisine={cuisine}
+          setCuisine={setCuisine}
+          reset={reset}
+          search={reset}
+        />
       </View>
     </ScreenBackground>
   );
