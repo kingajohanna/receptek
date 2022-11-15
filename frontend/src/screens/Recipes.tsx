@@ -35,50 +35,6 @@ export enum Time {
   slow = 'slow',
 }
 
-/*
-const getRecipes = () => {
-    const textFilter = text !== '';
-    const categoryFilter = category !== all;
-    const cuisineFilter = cuisine !== all;
-
-    const filteredRecipes = (keysEvery, valuesEvery) =>
-      recipeStore.recipes.filter(item =>
-        keysEvery.every(key =>
-          valuesEvery.some(val =>
-            item[key]?.toLowerCase().includes(val.toLowerCase()),
-          ),
-        ),
-      );
-
-    if (textFilter && categoryFilter && cuisineFilter) {
-      return setRecipes(
-        filteredRecipes(
-          ['title', 'category', 'cuisine'],
-          [text, category, cuisine],
-        ),
-      );
-    } else if (textFilter && categoryFilter) {
-      return setRecipes(
-        filteredRecipes(['title', 'category'], [text, category]),
-      );
-    } else if (textFilter && cuisineFilter) {
-      return setRecipes(filteredRecipes(['title', 'cuisine'], [text, cuisine]));
-    } else if (cuisineFilter && categoryFilter) {
-      return setRecipes(
-        filteredRecipes(['category', 'cuisine'], [category, cuisine]),
-      );
-    } else if (textFilter) {
-      return setRecipes(filteredRecipes(['title'], [text]));
-    } else if (categoryFilter) {
-      return setRecipes(filteredRecipes(['category'], [category]));
-    } else if (cuisineFilter) {
-      return setRecipes(filteredRecipes(['cuisine'], [cuisine]));
-    } else {
-      return setRecipes(recipeStore.recipes);
-    }
-  };
-    */
-
 export const Recipes = observer(() => {
   const {recipeStore} = useStore();
   const navigation = useNavigation<StackNavigationProp<RecipeStackParamList>>();
@@ -145,11 +101,24 @@ export const Recipes = observer(() => {
     navigation.navigate(Tabs.RECIPE, {recipe});
 
   useEffect(() => {
-    const textFilter = text !== '';
-    const categoryFilter = category !== all;
-    const cuisineFilter = cuisine !== all;
+    const keys: string[] = [];
+    const values: string[] = [];
 
-    const filteredRecipes = (keysEvery, valuesEvery) =>
+    if (text) {
+      keys.push('title');
+      values.push(text);
+    }
+    if (category !== all) {
+      keys.push('category');
+      values.push(category);
+    }
+
+    if (cuisine !== all) {
+      keys.push('cuisine');
+      values.push(cuisine);
+    }
+
+    const filteredRecipes = (keysEvery: string[], valuesEvery: string[]) =>
       recipeStore.recipes.filter(item =>
         keysEvery.every(key =>
           valuesEvery.some(val =>
@@ -158,32 +127,7 @@ export const Recipes = observer(() => {
         ),
       );
 
-    if (textFilter && categoryFilter && cuisineFilter) {
-      return setRecipes(
-        filteredRecipes(
-          ['title', 'category', 'cuisine'],
-          [text, category, cuisine],
-        ),
-      );
-    } else if (textFilter && categoryFilter) {
-      return setRecipes(
-        filteredRecipes(['title', 'category'], [text, category]),
-      );
-    } else if (textFilter && cuisineFilter) {
-      return setRecipes(filteredRecipes(['title', 'cuisine'], [text, cuisine]));
-    } else if (cuisineFilter && categoryFilter) {
-      return setRecipes(
-        filteredRecipes(['category', 'cuisine'], [category, cuisine]),
-      );
-    } else if (textFilter) {
-      return setRecipes(filteredRecipes(['title'], [text]));
-    } else if (categoryFilter) {
-      return setRecipes(filteredRecipes(['category'], [category]));
-    } else if (cuisineFilter) {
-      return setRecipes(filteredRecipes(['cuisine'], [cuisine]));
-    } else {
-      return setRecipes(recipeStore.recipes);
-    }
+    return setRecipes(filteredRecipes(keys, values));
   }, [text, category, cuisine, time, recipeStore.recipes]);
 
   return (
