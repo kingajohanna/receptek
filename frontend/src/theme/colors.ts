@@ -8,4 +8,5 @@ export const Colors = {
   gainsboro: '#EEEEEE',
   background: '#fbfaf8',
   white: '#ffffff',
+  red: '#880808',
 };

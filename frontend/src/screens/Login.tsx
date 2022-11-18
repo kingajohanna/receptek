@@ -1,9 +1,8 @@
 import {useStore} from '../stores';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import React, {useEffect, useState} from 'react';
-import {Alert, Button, SafeAreaView, View} from 'react-native';
-import Config from 'react-native-config';
+import React, {useState} from 'react';
+import {Alert} from 'react-native';
 import SocialLoginScreen from './auth/SocialLoginScreen';
 import en from '../locales/en';
 

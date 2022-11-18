@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Button, Text, View, StyleSheet, Pressable, Alert} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Text, View, StyleSheet, Pressable, Alert} from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {ScreenBackground} from '../components/Background';
 import {Tabs} from '../navigation/tabs';

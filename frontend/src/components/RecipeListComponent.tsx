@@ -3,15 +3,15 @@ import {
   StyleSheet,
   View,
   Text,
-  ImageBackground,
-  ImageSourcePropType,
   PressableProps,
   Pressable,
   Animated,
+  Alert,
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Colors} from '../theme/colors';
 import {Recipe} from '../types/recipe';
 
@@ -37,9 +37,27 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
       outputRange: [0, 0, 0, 0],
     });
 
-    const pressHandler = () => {
+    const favHandler = () => {
       close();
       //TODO add/remove fav
+    };
+
+    const deleteHandler = () => {
+      close();
+      Alert.alert(
+        'Delete recipe',
+        'Do you really want to delete this recipe?',
+        [
+          {
+            text: 'Delete',
+            onPress: () => {},
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+          },
+        ],
+      );
     };
 
     return (
@@ -49,15 +67,23 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
           transform: [{translateX: trans}],
           alignItems: 'center',
           justifyContent: 'center',
+          flexDirection: 'row',
+          marginVertical: 8,
         }}>
-        <Fontisto
-          name="bookmark"
-          color={Colors.teal}
-          size={32}
+        <Pressable
+          style={{...styles.swipeableButton, backgroundColor: Colors.red}}
           onPress={() => {
-            pressHandler();
-          }}
-        />
+            deleteHandler();
+          }}>
+          <MaterialIcons name="delete" color={Colors.white} size={32} />
+        </Pressable>
+        <Pressable
+          style={{...styles.swipeableButton}}
+          onPress={() => {
+            favHandler();
+          }}>
+          <Fontisto name="bookmark" color={Colors.teal} size={32} />
+        </Pressable>
       </Animated.View>
     );
   };
@@ -65,7 +91,7 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
   const renderRightActions = progress => (
     <View
       style={{
-        width: 70,
+        width: 150,
         flexDirection: 'row',
       }}>
       {renderRightAction('More', progress)}
@@ -136,5 +162,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
+  },
+  swipeableButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '50%',
+    height: '100%',
+    borderRadius: 15,
   },
 });

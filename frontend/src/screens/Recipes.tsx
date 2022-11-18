@@ -1,15 +1,6 @@
 import {observer} from 'mobx-react-lite';
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {
-  Alert,
-  ScrollView,
-  View,
-  Platform,
-  TextInput,
-  StyleSheet,
-  Dimensions,
-  Button,
-} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {Alert, ScrollView, View, Platform, StyleSheet} from 'react-native';
 import {ScreenBackground} from '../components/Background';
 import {RecipeListComponent} from '../components/RecipeListComponent';
 import {Tabs} from '../navigation/tabs';
@@ -21,11 +12,8 @@ import {Recipe} from '../types/recipe';
 import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
 import {addRecipe} from '../constants/backend';
 import {urlCheck} from '../utils/regex';
-import {FAB, List} from 'react-native-paper';
-import {Colors} from '../theme/colors';
+import {FAB} from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {Picker} from '@react-native-picker/picker';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SearchModal} from '../components/SearchModal';
 import {all} from '../stores/RecipeStore';
 

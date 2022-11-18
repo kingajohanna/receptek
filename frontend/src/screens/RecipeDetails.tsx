@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Dimensions,
   FlatList,
   NativeSyntheticEvent,
@@ -16,7 +15,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {Colors} from '../theme/colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Ingredients} from '../components/Ingredients';
-import {Divider, List, Menu} from 'react-native-paper';
+import {List, Menu} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 import Dots from 'react-native-dots-pagination';
 import Dialog from 'react-native-dialog';
