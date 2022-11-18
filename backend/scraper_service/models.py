@@ -69,3 +69,6 @@ class RecipeModel(BaseModel):
             }
         }
 
+class RecipeUpdate(BaseModel):
+    user_id: Optional[str]
+
