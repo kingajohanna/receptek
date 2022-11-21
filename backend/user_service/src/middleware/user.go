@@ -24,7 +24,7 @@ func AddUser(db *gorm.DB) gin.HandlerFunc {
 			return
 		}
 
-		user := model.User{UserID: user_request.UserID, Name: user_request.Name, Email: user_request.Email, Picture: user_request.Picture, Recipes: []model.Recipe{{RecipeID: "12c"}}}
+		user := model.User{UserID: user_request.UserID, Name: user_request.Name, Email: user_request.Email, Picture: user_request.Picture}
 		db.Create(&user)
 		c.JSON(http.StatusOK, gin.H{"data": user.ID})
 	})

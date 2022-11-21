@@ -2,7 +2,7 @@ server:
   port: 8001
 
 database:
-  dbhost: 127.0.0.1
+  dbhost: 192.168.1.109
   dbport: 5433
   dbname: "mealo_users"
   dbuser: "postgresuser"

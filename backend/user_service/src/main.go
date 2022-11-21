@@ -44,9 +44,10 @@ func main() {
 
 	router.POST("/user/add", MW.AddUser(db))
 
-	router.GET("/user/:userid/add/:recipeid", MW.AddRecipe(db))
-	router.GET("/user/:userid/add/:recipeid/favorite")
+	router.POST("/user/:userid/add/:recipeid", MW.AddRecipe(db))
 	router.DELETE("/user/:userid/del/:recipeid", MW.GetRecipe(db), MW.DelRecipe(db))
+	router.PUT("/user/:userid/favorite/:recipeid", MW.GetRecipe(db), MW.AddFavorite(db))
+	router.GET("/user/:userid/all", MW.GetAllRecipes(db))
 
 	router.Run(fmt.Sprintf("0.0.0.0:%d", configuration.Server.Port))
 }
