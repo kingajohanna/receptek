@@ -3,21 +3,20 @@ import {Recipes} from '../screens/Recipes';
 import {Settings} from '../screens/Settings';
 import {Colors} from '../theme/colors';
 import {Tabs} from './tabs';
-import {Platform, StatusBar, StyleSheet} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {StyleSheet} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import * as React from 'react';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import {androidBottomPadding} from '../utils/androidHelper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createStackNavigator} from '@react-navigation/stack';
 import {RecipeDetails} from '../screens/RecipeDetails';
-import {DrawerActions} from '@react-navigation/native';
 import {Recipe} from '../types/recipe';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export type RecipeStackParamList = {
   Recipes: undefined;
+  Favourites: undefined;
   Recipe: {recipe: Recipe};
 };
 
@@ -41,6 +40,23 @@ function RecipeNavigator() {
   );
 }
 
+function RecipeFavNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Tabs.FAVOURITES}
+        component={Favourites}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Tabs.RECIPE}
+        component={RecipeDetails}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export const AppNavigator = () => {
   return (
     <SafeAreaProvider style={{backgroundColor: Colors.background}}>
@@ -51,12 +67,12 @@ export const AppNavigator = () => {
         shifting={true}
         barStyle={styles.tabBar}>
         <Tab.Screen
-          name={Tabs.FAVOURITES}
-          component={Favourites}
+          name={Tabs.RECIPEFAVNAVIGATOR}
+          component={RecipeFavNavigator}
           options={{
             tabBarLabel: Tabs.FAVOURITES,
             tabBarIcon: ({color}) => (
-              <Fontisto name="bookmark" color={color} size={24} />
+              <Icon name="heart-outline" color={color} size={26} />
             ),
           }}
         />

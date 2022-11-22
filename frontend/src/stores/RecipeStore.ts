@@ -1,5 +1,12 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {getRecipes} from '../constants/backend';
+import {
+  addFavRecipe,
+  addRecipe,
+  deleteRecipe,
+  getFavRecipes,
+  getRecipes,
+  setRecipe,
+} from '../constants/backend';
 import {Recipe, testRecipe} from '../types/recipe';
 import {makePersistable} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,9 +40,32 @@ export default class RecipeStore {
 
     runInAction(() => {
       this.recipes = recipes;
-      //this.categories = categories;
-      //this.cuisines = cuisines;
+      this.categories = categories;
+      this.cuisines = cuisines;
     });
+  }
+
+  async setFavourites() {
+    const favs = await getFavRecipes();
+
+    runInAction(() => {
+      this.favourites = favs;
+    });
+  }
+
+  refresh() {
+    this.setRecipes();
+    this.setFavourites();
+  }
+
+  async addRecipe(url: string) {
+    await addRecipe(url);
+    this.refresh();
+  }
+
+  async removeRecipe(recipeID: string) {
+    await deleteRecipe(recipeID);
+    this.refresh();
   }
 
   removeRecipes() {
@@ -44,5 +74,16 @@ export default class RecipeStore {
 
   getRecipes() {
     return this.recipes;
+  }
+
+  async addFav(recipeID: string) {
+    await addFavRecipe(recipeID);
+    this.refresh();
+  }
+
+  async editRecipe(recipeID: string, body: any) {
+    const modifiedRecipe = await setRecipe(recipeID, body);
+    this.refresh();
+    return modifiedRecipe;
   }
 }

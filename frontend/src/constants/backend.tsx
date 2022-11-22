@@ -2,9 +2,18 @@ import auth from '@react-native-firebase/auth';
 import {Recipe} from '../types/recipe';
 
 const baseUrl = 'http://192.168.1.168:8080/';
+
 export const addRecipeURL = baseUrl + 'recipe/add/';
 
 export const getRecipeURL = baseUrl + 'recipe/get/';
+
+export const deleteRecipeURL = baseUrl + 'recipe/del/';
+
+export const addFavRecipeURL = baseUrl + 'recipe/fav/';
+
+export const getFavRecipeURL = baseUrl + 'recipe/get/favorite/';
+
+export const setRecipeURL = baseUrl + 'recipe/edit/';
 
 export const addRecipe = async (url: string) => {
   const token = await auth().currentUser?.getIdToken(true);
@@ -40,6 +49,86 @@ export const getRecipes = async () => {
   });
   const data = (await response.json()) as Recipe[];
   console.log(data);
+
+  return data;
+};
+
+export const deleteRecipe = async (recipeID: string) => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token);
+
+  const url = deleteRecipeURL + recipeID + '/';
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+  });
+  const data = (await response.json()) as Recipe[];
+  console.log(data);
+
+  return data;
+};
+
+export const addFavRecipe = async (recipeID: string) => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token);
+
+  const url = addFavRecipeURL + recipeID + '/';
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+  });
+  console.log(response);
+
+  return response;
+};
+
+export const getFavRecipes = async () => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token);
+
+  const response = await fetch(getFavRecipeURL, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+  });
+  const data = (await response.json()) as Recipe[];
+  console.log('*fav', data);
+
+  return data;
+};
+
+export const setRecipe = async (recipeID: string, body: any) => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token, body);
+
+  const url = setRecipeURL + recipeID + '/';
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = (await response.json()) as Recipe;
+
+  console.log('*', data);
 
   return data;
 };

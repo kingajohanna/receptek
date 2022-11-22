@@ -1,13 +1,16 @@
 import {useStore} from '../stores';
 import {AppNavigator} from './AppNavigator';
 import {AuthNavigator} from './AuthNavigator';
-import {NavigationContainer, NavigationState} from '@react-navigation/native';
-import {observer} from 'mobx-react-lite';
-import React, {useEffect, useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {firebase} from '@react-native-firebase/auth';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Alert, Platform} from 'react-native';
+import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
+import {urlCheck} from '../utils/regex';
+import {addRecipe} from '../constants/backend';
 
 export const RootNavigation = () => {
-  const {userStore} = useStore();
+  const {userStore, recipeStore} = useStore();
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -23,6 +26,54 @@ export const RootNavigation = () => {
     if (loggedIn) userStore.setIsLoggedIn(true);
     else userStore.setIsLoggedIn(false);
   }, [loggedIn]);
+
+  useEffect(() => {
+    recipeStore.setRecipes();
+    recipeStore.setFavourites();
+  }, [loggedIn]);
+
+  const handleShare: ShareCallback = useCallback((share?: ShareData) => {
+    if (!share) {
+      return;
+    }
+
+    const {data} = share;
+    const url = Array.isArray(data) ? data[0] : data;
+
+    if (url.match(urlCheck) && Platform.OS === 'ios')
+      recipeStore.addRecipe(url);
+    else {
+      Alert.alert(
+        'Add recipe',
+        'Do you want to add this recipe to your collection?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              addRecipe(url).then(() => recipeStore.setRecipes());
+            },
+          },
+        ],
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    ShareMenu.getInitialShare(handleShare);
+  }, []);
+
+  useEffect(() => {
+    const listener = ShareMenu.addNewShareListener(handleShare);
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   return (
     <NavigationContainer>

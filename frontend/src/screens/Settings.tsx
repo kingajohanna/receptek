@@ -7,6 +7,7 @@ import {Colors} from '../theme/colors';
 import auth from '@react-native-firebase/auth';
 import {useStore} from '../stores';
 import en from '../locales/en';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const Settings = () => {
   const {userStore} = useStore();
@@ -32,6 +33,31 @@ export const Settings = () => {
     }
   };
 
+  const onDelete = () => {
+    try {
+      Alert.alert(
+        'Delete',
+        `Are you sure you want to delete your whole account?`,
+        [
+          {
+            text: 'Delete',
+            onPress: () => {
+              auth()
+                .currentUser?.delete()
+                .then(() => userStore.setIsLoggedIn(false)); //todo backend
+            },
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+          },
+        ],
+      );
+    } catch (error) {
+      return Alert.alert(en.auth.error.title, en.auth.error.text);
+    }
+  };
+
   return (
     <ScreenBackground title={Tabs.SETTINGS}>
       <Pressable style={styles.buttonContainer} onPress={() => onSignout()}>
@@ -42,11 +68,13 @@ export const Settings = () => {
       </Pressable>
       <Pressable
         style={{...styles.buttonContainer, backgroundColor: Colors.red}}
-        onPress={() => onSignout()}>
-        <View style={styles.iconContainer}>
-          <SimpleLineIcons name="shit" size={20} />
+        onPress={() => onDelete()}>
+        <View style={{...styles.iconContainer, transform: [{scaleX: 1}]}}>
+          <Icon name="person-remove-outline" size={24} color={Colors.white} />
         </View>
-        <Text style={styles.text}>Kaki</Text>
+        <Text style={{...styles.text, color: Colors.white}}>
+          Delete account
+        </Text>
       </Pressable>
     </ScreenBackground>
   );

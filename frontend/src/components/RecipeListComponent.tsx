@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useStore} from '../stores';
 import {Colors} from '../theme/colors';
 import {Recipe} from '../types/recipe';
 
@@ -23,6 +24,7 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
   recipe,
   onPress,
 }) => {
+  const {recipeStore} = useStore();
   const swipeableRef = useRef<Swipeable | null>(null);
 
   const close = () => {
@@ -39,7 +41,7 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
 
     const favHandler = () => {
       close();
-      //TODO add/remove fav
+      recipeStore.addFav(recipe._id!);
     };
 
     const deleteHandler = () => {
@@ -50,7 +52,9 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
         [
           {
             text: 'Delete',
-            onPress: () => {},
+            onPress: () => {
+              recipeStore.removeRecipe(recipe._id!);
+            },
           },
           {
             text: 'Cancel',
@@ -82,7 +86,11 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
           onPress={() => {
             favHandler();
           }}>
-          <Fontisto name="bookmark" color={Colors.teal} size={32} />
+          {recipe.is_favorite ? (
+            <Icon name="heart" color={Colors.teal} size={32} />
+          ) : (
+            <Icon name="heart-outline" color={Colors.teal} size={32} />
+          )}
         </Pressable>
       </Animated.View>
     );

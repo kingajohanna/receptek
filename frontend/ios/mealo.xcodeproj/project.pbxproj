@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		29014350292CE587003D060C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2901434F292CE587003D060C /* Ionicons.ttf */; };
 		2954ECB1290EF46400E4FFB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */; };
 		2965E9D92915AAF800F20992 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2965E9D82915AAF800F20992 /* ShareViewController.swift */; };
 		2965E9DB2915AB1A00F20992 /* ReactShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2965E9DA2915AB1A00F20992 /* ReactShareViewController.swift */; };
@@ -67,6 +68,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = mealo/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mealo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mealo/main.m; sourceTree = "<group>"; };
+		2901434F292CE587003D060C /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		2954ECB0290EF46300E4FFB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2965E9D129159B3100F20992 /* ShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		2965E9D82915AAF800F20992 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ShareViewController.swift"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		29952888291086F700927E13 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2901434F292CE587003D060C /* Ionicons.ttf */,
 				299E20B72920066300A02612 /* MaterialCommunityIcons.ttf */,
 				299E20B62920066300A02612 /* MaterialIcons.ttf */,
 				2995288D29108D5400927E13 /* Fontisto.ttf */,
@@ -359,6 +362,7 @@
 			files = (
 				2995288E29108E0B00927E13 /* Fontisto.ttf in Resources */,
 				299E20B92920066300A02612 /* MaterialCommunityIcons.ttf in Resources */,
+				29014350292CE587003D060C /* Ionicons.ttf in Resources */,
 				2995288C29108ACB00927E13 /* SimpleLineIcons.ttf in Resources */,
 				299E20B82920066300A02612 /* MaterialIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,

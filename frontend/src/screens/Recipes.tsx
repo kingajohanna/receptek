@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Alert, ScrollView, View, Platform, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {ScreenBackground} from '../components/Background';
 import {RecipeListComponent} from '../components/RecipeListComponent';
 import {Tabs} from '../navigation/tabs';
@@ -9,9 +9,6 @@ import {useNavigation} from '@react-navigation/core';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RecipeStackParamList} from '../navigation/AppNavigator';
 import {Recipe} from '../types/recipe';
-import ShareMenu, {ShareCallback, ShareData} from 'react-native-share-menu';
-import {addRecipe} from '../constants/backend';
-import {urlCheck} from '../utils/regex';
 import {FAB} from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {SearchModal} from '../components/SearchModal';
@@ -19,7 +16,7 @@ import {all} from '../stores/RecipeStore';
 
 export enum Time {
   fast = 'fast',
-  medium = 'medium',
+  moderate = 'moderate',
   slow = 'slow',
 }
 
@@ -37,65 +34,29 @@ export const Recipes = observer(() => {
 
   const reset = () => {
     setText('');
-    setCategory('');
-    setCuisine('');
+    setCategory(all);
+    setCuisine(all);
     setTime(undefined);
+    setRecipes(recipeStore.recipes);
   };
-
-  const handleShare: ShareCallback = useCallback((share?: ShareData) => {
-    if (!share) {
-      return;
-    }
-
-    const {data} = share;
-    const url = Array.isArray(data) ? data[0] : data;
-
-    if (url.match(urlCheck) && Platform.OS === 'ios')
-      addRecipe(url).then(() => recipeStore.setRecipes());
-    else {
-      Alert.alert(
-        'Add recipe',
-        'Do you want to add this recipe to your collection?',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {
-            text: 'OK',
-            onPress: () => {
-              addRecipe(url).then(() => recipeStore.setRecipes());
-            },
-          },
-        ],
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    ShareMenu.getInitialShare(handleShare);
-  });
-
-  useEffect(() => {
-    const listener = ShareMenu.addNewShareListener(handleShare);
-
-    return () => {
-      listener.remove();
-    };
-  });
 
   const accessPage = (recipe: Recipe) =>
     navigation.navigate(Tabs.RECIPE, {recipe});
 
   useEffect(() => {
+    console.log(time);
+
+    if (
+      category === all &&
+      cuisine === all &&
+      text === '' &&
+      time === undefined
+    )
+      return setRecipes(recipeStore.recipes);
+
     const keys: string[] = [];
     const values: string[] = [];
 
-    if (text) {
-      keys.push('title');
-      values.push(text);
-    }
     if (category !== all) {
       keys.push('category');
       values.push(category);
@@ -106,17 +67,36 @@ export const Recipes = observer(() => {
       values.push(cuisine);
     }
 
-    const filteredRecipes = (keysEvery: string[], valuesEvery: string[]) =>
-      recipeStore.recipes.filter(item =>
-        keysEvery.every(key =>
-          valuesEvery.some(val =>
-            item[key]?.toLowerCase().includes(val.toLowerCase()),
-          ),
-        ),
-      );
+    if (text) {
+      keys.push('title');
+      values.push(text);
+    }
 
-    return setRecipes(filteredRecipes(keys, values));
+    if (time) {
+      keys.push('speed');
+      values.push(time);
+    }
+
+    const filter = (recipe: Recipe) => {
+      for (let i = 0; i < keys.length; i++) {
+        if (
+          !recipe[keys[i]] ||
+          !recipe[keys[i]].toLowerCase().includes(values[i].toLowerCase())
+        ) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    const filteredRecipes = recipeStore.recipes.filter(filter);
+
+    return setRecipes(filteredRecipes);
   }, [text, category, cuisine, time, recipeStore.recipes]);
+
+  const renderItem = ({item}) => (
+    <RecipeListComponent recipe={item} onPress={() => accessPage(item)} />
+  );
 
   return (
     <ScreenBackground title={Tabs.RECIPES}>
@@ -126,18 +106,11 @@ export const Recipes = observer(() => {
         onPress={() => refRBSheet.current!.open()}
       />
       <View style={{width: '100%', flex: 1}}>
-        <ScrollView
-          contentContainerStyle={{
-            width: '100%',
-          }}>
-          {recipes.map((recipe, index) => (
-            <RecipeListComponent
-              recipe={recipe}
-              key={'recipe' + index}
-              onPress={() => accessPage(recipe)}
-            />
-          ))}
-        </ScrollView>
+        <FlatList
+          data={recipes}
+          renderItem={renderItem}
+          keyExtractor={item => item._id!}
+        />
         <SearchModal
           refRBSheet={refRBSheet}
           onChangeText={setText}
@@ -149,7 +122,7 @@ export const Recipes = observer(() => {
           cuisine={cuisine}
           setCuisine={setCuisine}
           reset={reset}
-          search={reset}
+          search={() => refRBSheet.current!.close()}
         />
       </View>
     </ScreenBackground>

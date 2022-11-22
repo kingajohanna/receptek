@@ -4,4 +4,5 @@ export enum Tabs {
   SETTINGS = 'Settings',
   RECIPE = 'Recipe',
   RECIPENAVIGATOR = 'RecipeNavigator',
+  RECIPEFAVNAVIGATOR = 'RecipeFavNavigator',
 }

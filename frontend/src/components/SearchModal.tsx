@@ -83,36 +83,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         }}>
         <MaterialCommunityIcons
           name="speedometer-slow"
-          color={time === Time.slow ? Colors.gainsboro : Colors.teal}
-          size={50}
-          style={{
-            ...{
-              backgroundColor:
-                time === Time.slow ? Colors.teal : Colors.gainsboro,
-            },
-            ...styles.icon,
-          }}
-          onPress={() => {
-            time === Time.slow ? setTime(undefined) : setTime(Time.slow);
-          }}
-        />
-        <MaterialCommunityIcons
-          name="speedometer-medium"
-          color={time === Time.medium ? Colors.gainsboro : Colors.teal}
-          size={50}
-          style={{
-            ...{
-              backgroundColor:
-                time === Time.medium ? Colors.teal : Colors.gainsboro,
-            },
-            ...styles.icon,
-          }}
-          onPress={() => {
-            time === Time.medium ? setTime(undefined) : setTime(Time.medium);
-          }}
-        />
-        <MaterialCommunityIcons
-          name="speedometer"
           color={time === Time.fast ? Colors.gainsboro : Colors.teal}
           size={50}
           style={{
@@ -124,6 +94,38 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           }}
           onPress={() => {
             time === Time.fast ? setTime(undefined) : setTime(Time.fast);
+          }}
+        />
+        <MaterialCommunityIcons
+          name="speedometer-medium"
+          color={time === Time.moderate ? Colors.gainsboro : Colors.teal}
+          size={50}
+          style={{
+            ...{
+              backgroundColor:
+                time === Time.moderate ? Colors.teal : Colors.gainsboro,
+            },
+            ...styles.icon,
+          }}
+          onPress={() => {
+            time === Time.moderate
+              ? setTime(undefined)
+              : setTime(Time.moderate);
+          }}
+        />
+        <MaterialCommunityIcons
+          name="speedometer"
+          color={time === Time.slow ? Colors.gainsboro : Colors.teal}
+          size={50}
+          style={{
+            ...{
+              backgroundColor:
+                time === Time.slow ? Colors.teal : Colors.gainsboro,
+            },
+            ...styles.icon,
+          }}
+          onPress={() => {
+            time === Time.slow ? setTime(undefined) : setTime(Time.slow);
           }}
         />
       </View>
@@ -155,10 +157,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           justifyContent: 'space-between',
           marginHorizontal: 8,
         }}>
-        <Button style={styles.button} color={Colors.gainsboro}>
+        <Button style={styles.button} color={Colors.gainsboro} onPress={reset}>
           Reset
         </Button>
-        <Button style={styles.button} color={Colors.gainsboro}>
+        <Button style={styles.button} color={Colors.gainsboro} onPress={search}>
           Search
         </Button>
       </View>

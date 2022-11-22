@@ -20,6 +20,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Dots from 'react-native-dots-pagination';
 import Dialog from 'react-native-dialog';
 import FastImage from 'react-native-fast-image';
+import {useStore} from '../stores';
 
 const {width} = Dimensions.get('window');
 
@@ -33,8 +34,11 @@ enum EditModalTypes {
 }
 
 export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
+  const {recipeStore} = useStore();
   const {recipe} = route.params;
-  const {ingredients, title, totalTime, image, category, cuisine} = recipe;
+  const [showedRecipe, setShowedRecipe] = useState(recipe);
+  const {ingredients, title, totalTime, image, category, cuisine} =
+    showedRecipe;
   const [instructions, setInstructions] = useState(recipe.instructions);
   const [openIngredients, setOpenIngredients] = useState(true);
   const [activeDot, setActiveDot] = useState(0);
@@ -79,6 +83,30 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
         setEditModalType(undefined);
         break;
     }
+  };
+
+  const getEditContent = () => {
+    switch (editModalType) {
+      case EditModalTypes.category:
+        return {
+          category: editValue,
+        };
+      case EditModalTypes.title:
+        return {
+          title: editValue,
+        };
+      case EditModalTypes.time:
+        return {
+          totalTime: editValue,
+        };
+      case EditModalTypes.cuisine:
+        return {
+          cuisine: editValue,
+        };
+      default:
+        break;
+    }
+    return;
   };
 
   return (
@@ -242,9 +270,13 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
         />
         <Dialog.Button
           label="Change"
-          onPress={() => {
+          onPress={async () => {
+            const recipe = await recipeStore.editRecipe(
+              showedRecipe._id!,
+              getEditContent(),
+            );
             setEditValue('');
-            //TODO call the right endpoint
+            setShowedRecipe(recipe);
             setEditModalType(undefined);
           }}
         />
