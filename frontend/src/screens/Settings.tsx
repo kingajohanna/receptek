@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 import {useStore} from '../stores';
 import en from '../locales/en';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {deleteUser} from '../constants/backend';
 
 export const Settings = () => {
   const {userStore} = useStore();
@@ -42,9 +43,10 @@ export const Settings = () => {
           {
             text: 'Delete',
             onPress: () => {
+              deleteUser();
               auth()
                 .currentUser?.delete()
-                .then(() => userStore.setIsLoggedIn(false)); //todo backend
+                .then(() => userStore.setIsLoggedIn(false));
             },
           },
           {

@@ -15,6 +15,10 @@ export const getFavRecipeURL = baseUrl + 'recipe/get/favorite/';
 
 export const setRecipeURL = baseUrl + 'recipe/edit/';
 
+export const addUserURL = baseUrl + 'user/add/';
+
+export const deleteUserURL = baseUrl + 'user/del/';
+
 export const addRecipe = async (url: string) => {
   const token = await auth().currentUser?.getIdToken(true);
   console.log(token);
@@ -131,4 +135,42 @@ export const setRecipe = async (recipeID: string, body: any) => {
   console.log('*', data);
 
   return data;
+};
+
+export const addUser = async () => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token);
+
+  const response = await fetch(addUserURL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+  });
+
+  console.log('*', response);
+
+  return response;
+};
+
+export const deleteUser = async () => {
+  const token = await auth().currentUser?.getIdToken(true);
+  console.log(token);
+
+  const url = deleteUserURL + auth().currentUser?.uid + '/';
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token!,
+    },
+  });
+
+  console.log('*', response);
+
+  return response;
 };

@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {Alert} from 'react-native';
 import SocialLoginScreen from './auth/SocialLoginScreen';
 import en from '../locales/en';
+import {addUser} from '../constants/backend';
 
 const firebasePassword = '(?=.*[0-9a-zA-Z]).{6,}';
 const firebaseEmail = new RegExp(
@@ -38,7 +39,9 @@ export const Login = () => {
 
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-      await auth().signInWithCredential(googleCredential);
+      const user = await auth().signInWithCredential(googleCredential);
+
+      if (user.additionalUserInfo?.isNewUser) addUser();
 
       userStore.setIsLoggedIn(true);
 
@@ -69,6 +72,7 @@ export const Login = () => {
       }
 
       await auth().createUserWithEmailAndPassword(email, password);
+      addUser();
       userStore.setIsLoggedIn(true);
 
       return;

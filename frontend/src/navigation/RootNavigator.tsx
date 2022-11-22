@@ -28,8 +28,10 @@ export const RootNavigation = () => {
   }, [loggedIn]);
 
   useEffect(() => {
-    recipeStore.setRecipes();
-    recipeStore.setFavourites();
+    if (loggedIn) {
+      recipeStore.setRecipes();
+      recipeStore.setFavourites();
+    }
   }, [loggedIn]);
 
   const handleShare: ShareCallback = useCallback((share?: ShareData) => {
