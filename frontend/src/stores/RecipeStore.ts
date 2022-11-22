@@ -22,7 +22,7 @@ export default class RecipeStore {
     makeAutoObservable(this, {}, {autoBind: true});
     makePersistable(this, {
       name: 'RecipeStore',
-      properties: ['recipes'],
+      properties: ['recipes', 'favourites', 'categories', 'cuisines'],
       storage: AsyncStorage,
     });
   }

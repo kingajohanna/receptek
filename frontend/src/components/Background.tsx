@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, ViewProps} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  ViewProps,
+  StatusBar,
+} from 'react-native';
 import {Colors} from '../theme/colors';
 
 type ScreenBackgroundProps = {
@@ -7,9 +14,6 @@ type ScreenBackgroundProps = {
   withoutHeader?: boolean;
 } & ViewProps;
 
-/**
- *    base background, with header and optinal error message
- */
 export const ScreenBackground: React.FC<ScreenBackgroundProps> = props => {
   return (
     <SafeAreaView
@@ -19,6 +23,7 @@ export const ScreenBackground: React.FC<ScreenBackgroundProps> = props => {
         borderBottomRightRadius: 15,
         flex: 1,
       }}>
+      <StatusBar backgroundColor={Colors.gainsboro} barStyle="dark-content" />
       <View style={styles.background}>
         {!props.withoutHeader && (
           <View style={styles.header}>

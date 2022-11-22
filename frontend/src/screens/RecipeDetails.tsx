@@ -206,6 +206,8 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
 
         <View style={{padding: 10}}>
           <List.Accordion
+            theme={{colors: {background: 'transparent'}}}
+            style={{backgroundColor: 'transparent'}}
             title="Ingredients"
             id="1"
             expanded={openIngredients}
