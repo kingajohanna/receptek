@@ -52,5 +52,6 @@ target 'ShareExtension' do
   use_react_native!
   use_native_modules!
 
+  pod 'RNShareMenu', :path => '../node_modules/react-native-share-menu'
   # Manually link packages here to keep your extension bundle size minimal
 end

@@ -40,6 +40,14 @@ export const Settings = () => {
         </View>
         <Text style={styles.text}>Logout</Text>
       </Pressable>
+      <Pressable
+        style={{...styles.buttonContainer, backgroundColor: Colors.red}}
+        onPress={() => onSignout()}>
+        <View style={styles.iconContainer}>
+          <SimpleLineIcons name="shit" size={20} />
+        </View>
+        <Text style={styles.text}>Kaki</Text>
+      </Pressable>
     </ScreenBackground>
   );
 };
