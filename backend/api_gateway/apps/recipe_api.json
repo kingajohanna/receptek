@@ -1,0 +1,68 @@
+{
+    "name": "Recipe API",
+    "api_id": "fc55a654-6a1d-4b4b-8f83-19b4831f459a",
+    "definition": {
+        "location": "header",
+        "key": "version"
+    },
+    "auth": {
+        "auth_header_name": "authorization"
+    },
+    "enable_context_vars": true,
+    "version_data": {
+        "not_versioned": true,
+        "versions": {
+          "Default": {
+            "name": "Default",
+            "paths": {
+              "ignored": [],
+              "white_list": [],
+              "black_list": []
+            },
+            "use_extended_paths": true,
+            "extended_paths": {
+              "ignored": [],
+              "white_list": [],
+              "black_list": [],
+              "cache": ["get"],
+              "transform": [],
+              "transform_headers": [],
+              "url_rewrites": [
+                {
+                  "path": "/get/favorite",
+                  "method": "GET",
+                  "match_pattern": "/get/favorite",
+                  "rewrite_to": "/recipe/get/$tyk_context.jwt_claims_user_id/favorite/"
+                }, {
+                "path": "/get",
+                "method": "GET",
+                "match_pattern": "/get",
+                "rewrite_to": "/recipe/get/$tyk_context.jwt_claims_user_id/"
+              }]
+            },
+            "global_headers":{
+              "X-user": "$tyk_context.jwt_claims_user_id"
+            },
+            "global_headers_remove": ["authorization"]
+          }
+        }
+      },
+    "use_openid": true,
+    "openid_options": {
+    "providers": [
+    {
+      "issuer": "https://securetoken.google.com/mealo-mao",
+      "client_ids": {
+        "bWVhbG8tbWFv": "default"
+      }
+    }
+    ]},
+    "segregate_by_client": false,
+    "proxy": {
+        "listen_path": "/recipe/",
+        "target_url": "http://192.168.1.168:8000/",
+        "strip_listen_path": false,
+        "preserve_host_header": true
+    },
+    "active": true
+}

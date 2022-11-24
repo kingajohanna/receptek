@@ -1,6 +1,6 @@
 {
-    "name": "Recipe API",
-    "api_id": "fc55a654-6a1d-4b4b-8f83-19b4831f459a",
+    "name": "User API",
+    "api_id": "a0764d84-d854-4d0e-8342-6b0b393f56e0",
     "definition": {
         "location": "header",
         "key": "version"
@@ -25,13 +25,25 @@
               "white_list": [],
               "black_list": [],
               "cache": ["get"],
-              "transform": [],
+              "transform": [
+                {
+                  "path": "/add/",
+                  "method": "POST",
+                  "template_data": {
+                    "template_mode": "file",
+                    "template_source":"/opt/tyk-gateway/custom-templates/add_user.tmpl",
+                    "input_type": "json",
+                    "enable_session": false
+                  }
+                }
+              ],
               "transform_headers": [],
-              "url_rewrites": [{
-                "path": "/get",
-                "method": "GET",
-                "match_pattern": "/get",
-                "rewrite_to": "/recipe/get/$tyk_context.jwt_claims_user_id/"
+              "url_rewrites": [
+                {
+                "path": "/del/",
+                "method": "DELETE",
+                "match_pattern": "/del/",
+                "rewrite_to": "/user/del/$tyk_context.jwt_claims_user_id/"
               }]
             },
             "global_headers":{
@@ -53,8 +65,8 @@
     ]},
     "segregate_by_client": false,
     "proxy": {
-        "listen_path": "/recipe/",
-        "target_url": "http://192.168.1.168:8000/",
+        "listen_path": "/user/",
+        "target_url": "http://192.168.1.168:8001/",
         "strip_listen_path": false,
         "preserve_host_header": true
     },

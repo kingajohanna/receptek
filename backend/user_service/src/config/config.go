@@ -4,6 +4,7 @@ package config
 type Configurations struct {
 	Server   ServerConfigurations
 	Database DatabaseConfigurations
+	RabbitMQ RabbitMQConfigurations
 }
 
 // ServerConfigurations exported
@@ -18,4 +19,11 @@ type DatabaseConfigurations struct {
 	DBName     string
 	DBUser     string
 	DBPassword string
+}
+
+type RabbitMQConfigurations struct {
+	Host     string
+	Port     int
+	Username string
+	Password string
 }

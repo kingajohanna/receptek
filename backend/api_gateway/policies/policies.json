@@ -11,6 +11,12 @@
             "versions": [
               "Default"
             ]
+          }, "a0764d84-d854-4d0e-8342-6b0b393f56e0": {
+            "api_name": "User_API",
+            "api_id": "a0764d84-d854-4d0e-8342-6b0b393f56e0",
+            "versions": [
+              "Default"
+            ]
           }
         },
         "hmac_enabled": false,
