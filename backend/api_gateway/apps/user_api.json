@@ -66,7 +66,7 @@
     "segregate_by_client": false,
     "proxy": {
         "listen_path": "/user/",
-        "target_url": "http://192.168.1.168:8001/",
+        "target_url": "http://user-service:8001/",
         "strip_listen_path": false,
         "preserve_host_header": true
     },

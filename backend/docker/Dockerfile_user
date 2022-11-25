@@ -1,0 +1,11 @@
+FROM golang:1.19 as build
+WORKDIR /user
+COPY /user_service .
+RUN make build
+
+FROM ubuntu:latest  
+EXPOSE 8001
+WORKDIR /user
+COPY --from=build /user/user-service-linux ./bin/user-service-linux
+COPY --from=build /user/config ./config
+CMD cd ./bin && ./user-service-linux

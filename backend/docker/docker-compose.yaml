@@ -1,0 +1,98 @@
+version: '3.9'
+services:
+  scraper-service:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile_scraper
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+      - some-rabbit
+    networks:
+      - tyknet
+      - mongonet
+      - rabbitmqnet
+
+  user-service:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile_user
+    ports:
+      - 8001:8001
+    depends_on:
+      - postgres
+      - some-rabbit
+    networks:
+      - tyknet
+      - postgresnet
+      - rabbitmqnet
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - mongonet
+  
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=postgresPW
+      - POSTGRES_DB=mealo_users
+    ports:
+      - 5432:5432
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
+      - ../user_service/config/postgres_config.sh:/docker-entrypoint-initdb.d/postgres_config.sh
+      - ../user_service/config/table_config.sql:/docker-entrypoint-initdb.d/table_config.sql
+    networks:
+      - postgresnet
+
+  some-rabbit:
+    image: rabbitmq:latest
+    restart: always
+    ports:
+      - 5672:5672
+    networks:
+      - rabbitmqnet
+
+  tyk-gateway:
+    image: docker.tyk.io/tyk-gateway/tyk-gateway:v4.1.0-rc10
+    ports:
+      - 8080:8080
+    networks:
+      - tyknet
+    volumes:
+      - ../api_gateway/tyk.standalone.conf:/opt/tyk-gateway/tyk.conf
+      - ../api_gateway/apps:/opt/tyk-gateway/apps
+      - ../api_gateway/middleware:/opt/tyk-gateway/middleware
+      - ../api_gateway/certs:/opt/tyk-gateway/certs
+      - ../api_gateway/policies:/opt/tyk-gateway/policies
+      - ../api_gateway/templates:/opt/tyk-gateway/custom-templates
+    environment:
+      - TYK_GW_SECRET=secret
+    depends_on:
+      - tyk-redis
+  
+  tyk-redis:
+    image: redis:6.2.7-alpine
+    networks:
+      - tyknet
+    ports:
+      - 6379:6379
+
+networks:
+  tyknet:
+  mongonet:
+  postgresnet:
+  rabbitmqnet:
+
+volumes:
+  mongodata:
+  pgdata:
