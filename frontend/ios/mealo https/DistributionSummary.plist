@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>mealo.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>023465CAE36B342C81A182B47B82B3A8BC5E2405</string>
+				<key>dateExpires</key>
+				<string>2023. 11. 22.</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>023465CAE36B342C81A182B47B82B3A8BC5E2405</string>
+						<key>dateExpires</key>
+						<string>2023. 11. 22.</string>
+						<key>type</key>
+						<string>Cloud Managed Apple Distribution</string>
+					</dict>
+					<key>entitlements</key>
+					<dict>
+						<key>application-identifier</key>
+						<string>LFAL9L5B67.hu.mealo.mealo.ShareExtension</string>
+						<key>com.apple.developer.team-identifier</key>
+						<string>LFAL9L5B67</string>
+						<key>com.apple.security.application-groups</key>
+						<array>
+							<string>group.hu.mealo.mealo</string>
+						</array>
+						<key>get-task-allow</key>
+						<false/>
+					</dict>
+					<key>name</key>
+					<string>ShareExtension.appex</string>
+					<key>profile</key>
+					<dict>
+						<key>UUID</key>
+						<string>96bba3a8-a657-498d-abb5-148d7e42414a</string>
+						<key>dateExpires</key>
+						<string>2023. 11. 22.</string>
+						<key>name</key>
+						<string>iOS Team Ad Hoc Provisioning Profile: hu.mealo.mealo.ShareExtension</string>
+					</dict>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>LFAL9L5B67</string>
+						<key>name</key>
+						<string>Zoosh Magyarorszag Kft.</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>1.0</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>LFAL9L5B67.hu.mealo.mealo</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>LFAL9L5B67</string>
+				<key>com.apple.security.application-groups</key>
+				<array>
+					<string>group.hu.mealo.mealo</string>
+				</array>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>mealo.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>9758c970-01bc-4b93-8456-1ce77e15b7f8</string>
+				<key>dateExpires</key>
+				<string>2023. 11. 22.</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: hu.mealo.mealo</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>LFAL9L5B67</string>
+				<key>name</key>
+				<string>Zoosh Magyarorszag Kft.</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

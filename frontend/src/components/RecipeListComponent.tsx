@@ -118,14 +118,15 @@ export const RecipeListComponent: React.FC<ScreenBackgroundProps> = ({
           <View style={styles.overlay} />
           <View style={{padding: 15, paddingLeft: 30}}>
             <Text style={styles.title}>{recipe.title}</Text>
+            {recipe.yields && <Text style={styles.text}>{recipe.yields}</Text>}
+            {recipe.totalTime && (
+              <Text style={styles.text}>{recipe.totalTime} min</Text>
+            )}
             {recipe.category && (
               <Text style={styles.text}>{recipe.category}</Text>
             )}
             {recipe.cuisine && (
               <Text style={styles.text}>{recipe.cuisine}</Text>
-            )}
-            {recipe.totalTime && (
-              <Text style={styles.text}>{recipe.totalTime} min</Text>
             )}
           </View>
         </FastImage>

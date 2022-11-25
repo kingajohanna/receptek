@@ -8,6 +8,7 @@ import {
   FlatList,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Image,
 } from 'react-native';
 import {ScreenBackground} from '../components/Background';
 import {RecipeStackParamList} from '../navigation/AppNavigator';
@@ -37,7 +38,7 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
   const {recipeStore} = useStore();
   const {recipe} = route.params;
   const [showedRecipe, setShowedRecipe] = useState(recipe);
-  const {ingredients, title, totalTime, image, category, cuisine} =
+  const {ingredients, title, totalTime, image, category, cuisine, yields} =
     showedRecipe;
   const [instructions, setInstructions] = useState(recipe.instructions);
   const [openIngredients, setOpenIngredients] = useState(true);
@@ -187,26 +188,54 @@ export const RecipeDetails: React.FC<Props> = ({route, navigation}) => {
                 />
               </Menu>
             </View>
-            {totalTime && (
-              <View style={styles.timerIconStyle}>
-                <MaterialCommunityIcons
-                  name="timer-outline"
-                  color={Colors.white}
-                  size={28}
-                />
+            <View style={styles.timerIconStyle}>
+              {totalTime && (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingBottom: 4,
+                  }}>
+                  <MaterialCommunityIcons
+                    name="timer-outline"
+                    color={Colors.white}
+                    size={28}
+                  />
 
-                <Text
-                  style={{color: Colors.white, paddingLeft: 10, fontSize: 18}}>
-                  {totalTime} min
-                </Text>
-              </View>
-            )}
+                  <Text
+                    style={{
+                      color: Colors.white,
+                      paddingLeft: 10,
+                      fontSize: 18,
+                    }}>
+                    {totalTime} min
+                  </Text>
+                </View>
+              )}
+              {yields && (
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Image
+                    style={{width: 30, height: 30}}
+                    source={require('../assets/images/yields.png')}
+                  />
+
+                  <Text
+                    style={{
+                      color: Colors.white,
+                      paddingLeft: 10,
+                      fontSize: 18,
+                    }}>
+                    {yields}
+                  </Text>
+                </View>
+              )}
+            </View>
           </View>
         </View>
 
         <View style={{padding: 10}}>
           <List.Accordion
-            theme={{colors: {background: 'transparent'}}}
+            theme={{colors: {background: 'transparent', text: Colors.teal}}}
             style={{backgroundColor: 'transparent'}}
             title="Ingredients"
             id="1"
@@ -316,10 +345,9 @@ const styles = StyleSheet.create({
     left: 20,
   },
   timerIconStyle: {
-    flexDirection: 'row',
     position: 'absolute',
     bottom: 10,
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   ingredientsContainer: {
     backgroundColor: Colors.gainsboro,
