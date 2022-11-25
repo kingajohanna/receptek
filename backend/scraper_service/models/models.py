@@ -1,9 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from typing import Optional
 from bson import ObjectId
+from enum import Enum
+
+
 
 class URL(BaseModel):
-    url: str
+    url: HttpUrl
 
 class PyObjectId(ObjectId):
     @classmethod
@@ -20,13 +23,21 @@ class PyObjectId(ObjectId):
     def __modify_schema__(cls, field_schema):
         field_schema.update(type="string")
 
+class SpeedEnum(str, Enum):
+    FAST = 'fast'
+    MODERATE = 'moderate'
+    SLOW = 'slow'
+    UNDEFINED = 'undefined'
+
 class RecipeModel(BaseModel):
     id: str = Field(default_factory=PyObjectId, alias='_id')
-    user_id: list[str] = Field()
+    user_id: str = Field()
+    is_favorite: bool = Field()
     host: str = Field(...)
     canonical_url: Optional[str]
     title: str = Field(...)
     category: Optional[str]
+    speed: Optional[SpeedEnum]
     totalTime: Optional[str]
     cookTime: Optional[str]
     prepTime: Optional[str]
@@ -70,5 +81,7 @@ class RecipeModel(BaseModel):
         }
 
 class RecipeUpdate(BaseModel):
-    user_id: Optional[str]
-
+    title: Optional[str]
+    category: Optional[str]
+    totalTime: Optional[str]
+    cuisine: Optional[str]

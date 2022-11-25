@@ -2,11 +2,18 @@ server:
   port: 8001
 
 database:
-  dbhost: 192.168.1.109
+  dbhost: localhost
   dbport: 5433
   dbname: "mealo_users"
   dbuser: "postgresuser"
   dbpassword: "postgresPW"
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: "guest"
+  password: "guest"
+
 
 #docker run -it -v pgdata:/var/lib/pgdata/data -p 5433:5432 --name postgres -e POSTGRES_USER=postgresuser -e POSTGRES_PASSWORD=postgresPW -e POSTGRES_DB=mealo_users -d postgres
   

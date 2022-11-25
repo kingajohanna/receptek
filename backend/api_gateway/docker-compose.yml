@@ -12,6 +12,7 @@ services:
       - ./middleware:/opt/tyk-gateway/middleware
       - ./certs:/opt/tyk-gateway/certs
       - ./policies:/opt/tyk-gateway/policies
+      - ./templates:/opt/tyk-gateway/custom-templates
     environment:
       - TYK_GW_SECRET=secret
     depends_on:

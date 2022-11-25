@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	conf "receptek/user_service/src/config"
+	messaging "receptek/user_service/src/messaging"
 	MW "receptek/user_service/src/middleware"
 	model "receptek/user_service/src/model"
 
@@ -33,21 +34,24 @@ func main() {
 		configuration.Database.DBName,
 		configuration.Database.DBPort)
 	if err != nil {
-		log.Panicf("Cannot connect to DB on address ")
+		log.Panicf("Failed to connect to RabbitMQ on address %s:%d", configuration.Database.DBHost, configuration.Database.DBPort)
 	}
-
+	mq := messaging.ConnectToMessageBroker(configuration.RabbitMQ.Host,
+		configuration.RabbitMQ.Username,
+		configuration.RabbitMQ.Password,
+		configuration.RabbitMQ.Port)
+	if mq.CH == nil {
+		fmt.Println("purr")
+	}
+	//defer mq.Close()
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
 	})
 
-	router.POST("/user/add", MW.AddUser(db))
-
-	router.POST("/user/:userid/add/:recipeid", MW.AddRecipe(db))
-	router.DELETE("/user/:userid/del/:recipeid", MW.GetRecipe(db), MW.DelRecipe(db))
-	router.PUT("/user/:userid/favorite/:recipeid", MW.GetRecipe(db), MW.AddFavorite(db))
-	router.GET("/user/:userid/all", MW.GetAllRecipes(db))
+	router.POST("/user/add/", MW.AddUser(db))
+	router.DELETE("/user/del/:userid/", MW.GetUser(db), MW.DelUser(db, mq))
 
 	router.Run(fmt.Sprintf("0.0.0.0:%d", configuration.Server.Port))
 }

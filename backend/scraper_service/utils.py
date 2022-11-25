@@ -1,4 +1,4 @@
-import models
+import models.models as models
 from typing import Any
 
 def convert_scraper_to_model(scraper: Any, user_id: str) -> models.RecipeModel:
@@ -8,10 +8,23 @@ def convert_scraper_to_model(scraper: Any, user_id: str) -> models.RecipeModel:
     'language':scraper.language, 'ingredients':scraper.ingredients, 'instructions':scraper.instructions_list,
     'ratings':scraper.ratings, 'author':scraper.author, 'cuisine':scraper.cuisine, 'description':scraper.description,
     'reviews':scraper.reviews, 'siteName':scraper.site_name}
-    scraper_dict = {'user_id': [user_id]}
+    scraper_dict = {'user_id': user_id, 'is_favorite': False}
     for k, v in scraper_methods.items():
         try:
             scraper_dict[k] = v()
         except NotImplementedError:
             scraper_dict[k] = None
+    scraper_dict = fill_recipe_speed(scraper_dict)
     return models.RecipeModel.parse_obj(scraper_dict)
+
+def fill_recipe_speed(recipe: dict) -> dict:
+    if (tt := recipe['totalTime']) is not None:
+        if int(tt) <= 45:
+            recipe['speed'] = models.SpeedEnum.FAST
+        elif int(tt) <= 120:
+            recipe['speed'] = models.SpeedEnum.MODERATE
+        else:
+            recipe['speed'] = models.SpeedEnum.SLOW
+    else:
+        recipe['spped'] = models.SpeedEnum.UNDEFINED
+    return recipe
