@@ -26,4 +26,5 @@ type RabbitMQConfigurations struct {
 	Port     int
 	Username string
 	Password string
+	Queue    string
 }

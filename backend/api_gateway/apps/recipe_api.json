@@ -60,7 +60,7 @@
     "segregate_by_client": false,
     "proxy": {
         "listen_path": "/recipe/",
-        "target_url": "http://192.168.1.168:8000/",
+        "target_url": "http://scraper-service:8000/",
         "strip_listen_path": false,
         "preserve_host_header": true
     },

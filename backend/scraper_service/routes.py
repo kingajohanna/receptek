@@ -6,7 +6,7 @@ sys.path.append(os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__
 from recipe_scrapers import scrape_me
 from models.models import URL, RecipeUpdate
 import logging
-import utils
+import utils.utils as utils
 from pymongo import ReturnDocument
 
 

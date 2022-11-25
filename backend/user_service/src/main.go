@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 	conf "receptek/user_service/src/config"
-	messaging "receptek/user_service/src/messaging"
+	"receptek/user_service/src/messaging"
 	MW "receptek/user_service/src/middleware"
-	model "receptek/user_service/src/model"
+	"receptek/user_service/src/model"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -15,7 +15,7 @@ import (
 
 func main() {
 	viper.SetConfigName("config.yaml")
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("../config")
 	//viper.AutomaticEnv()
 	viper.SetConfigType("yml")
 	var configuration conf.Configurations
@@ -34,16 +34,14 @@ func main() {
 		configuration.Database.DBName,
 		configuration.Database.DBPort)
 	if err != nil {
-		log.Panicf("Failed to connect to RabbitMQ on address %s:%d", configuration.Database.DBHost, configuration.Database.DBPort)
+		log.Panicf("Failed to connect to Database on address %s:%d", configuration.Database.DBHost, configuration.Database.DBPort)
 	}
 	mq := messaging.ConnectToMessageBroker(configuration.RabbitMQ.Host,
 		configuration.RabbitMQ.Username,
 		configuration.RabbitMQ.Password,
+		configuration.RabbitMQ.Queue,
 		configuration.RabbitMQ.Port)
-	if mq.CH == nil {
-		fmt.Println("purr")
-	}
-	//defer mq.Close()
+	defer mq.Close()
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
