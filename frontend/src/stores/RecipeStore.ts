@@ -53,9 +53,9 @@ export default class RecipeStore {
     });
   }
 
-  refresh() {
-    this.setRecipes();
-    this.setFavourites();
+  async refresh() {
+    await this.setRecipes();
+    await this.setFavourites();
   }
 
   async addRecipe(url: string) {

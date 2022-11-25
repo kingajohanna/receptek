@@ -21,7 +21,6 @@ export const deleteUserURL = baseUrl + 'user/del/';
 
 export const addRecipe = async (url: string) => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const response = await fetch(addRecipeURL, {
     method: 'POST',
@@ -34,14 +33,13 @@ export const addRecipe = async (url: string) => {
       url: url,
     }),
   });
-  console.log(response);
+  console.log('addrecipe', response);
 
   return response;
 };
 
 export const getRecipes = async () => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const response = await fetch(getRecipeURL, {
     method: 'GET',
@@ -52,14 +50,13 @@ export const getRecipes = async () => {
     },
   });
   const data = (await response.json()) as Recipe[];
-  console.log(data);
+  console.log('getrecipe', data);
 
   return data;
 };
 
 export const deleteRecipe = async (recipeID: string) => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const url = deleteRecipeURL + recipeID + '/';
 
@@ -72,14 +69,13 @@ export const deleteRecipe = async (recipeID: string) => {
     },
   });
   const data = (await response.json()) as Recipe[];
-  console.log(data);
+  console.log('deleteRecipe', data);
 
   return data;
 };
 
 export const addFavRecipe = async (recipeID: string) => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const url = addFavRecipeURL + recipeID + '/';
 
@@ -91,14 +87,13 @@ export const addFavRecipe = async (recipeID: string) => {
       authorization: 'Bearer ' + token!,
     },
   });
-  console.log(response);
+  console.log('addfav', response);
 
   return response;
 };
 
 export const getFavRecipes = async () => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const response = await fetch(getFavRecipeURL, {
     method: 'GET',
@@ -109,7 +104,8 @@ export const getFavRecipes = async () => {
     },
   });
   const data = (await response.json()) as Recipe[];
-  console.log('*fav', data);
+
+  console.log('getfav', data);
 
   return data;
 };
@@ -132,14 +128,13 @@ export const setRecipe = async (recipeID: string, body: any) => {
 
   const data = (await response.json()) as Recipe;
 
-  console.log('*', data);
+  console.log('editrecipe', data);
 
   return data;
 };
 
 export const addUser = async () => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const response = await fetch(addUserURL, {
     method: 'POST',
@@ -149,15 +144,13 @@ export const addUser = async () => {
       authorization: 'Bearer ' + token!,
     },
   });
-
-  console.log('*', response);
+  console.log('adduser', response);
 
   return response;
 };
 
 export const deleteUser = async () => {
   const token = await auth().currentUser?.getIdToken(true);
-  console.log(token);
 
   const url = deleteUserURL + auth().currentUser?.uid + '/';
 
@@ -170,7 +163,7 @@ export const deleteUser = async () => {
     },
   });
 
-  console.log('*', response);
+  console.log('deleteuser', response);
 
   return response;
 };

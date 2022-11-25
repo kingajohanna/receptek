@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 import {ScreenBackground} from '../components/Background';
 import {RecipeListComponent} from '../components/RecipeListComponent';
 import {Tabs} from '../navigation/tabs';
@@ -24,6 +24,8 @@ export const Recipes = observer(() => {
   const {recipeStore} = useStore();
   const navigation = useNavigation<StackNavigationProp<RecipeStackParamList>>();
 
+  const [refreshing, setRefreshing] = useState(false);
+
   const [recipes, setRecipes] = useState(recipeStore.recipes);
   const [text, setText] = useState('');
   const [category, setCategory] = useState(all);
@@ -44,8 +46,6 @@ export const Recipes = observer(() => {
     navigation.navigate(Tabs.RECIPE, {recipe});
 
   useEffect(() => {
-    console.log(time);
-
     if (
       category === all &&
       cuisine === all &&
@@ -98,6 +98,12 @@ export const Recipes = observer(() => {
     <RecipeListComponent recipe={item} onPress={() => accessPage(item)} />
   );
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await recipeStore.refresh();
+    setRefreshing(false);
+  };
+
   return (
     <ScreenBackground title={Tabs.RECIPES}>
       <FAB
@@ -110,6 +116,8 @@ export const Recipes = observer(() => {
           data={recipes}
           renderItem={renderItem}
           keyExtractor={item => item._id!}
+          refreshing={refreshing}
+          onRefresh={() => onRefresh()}
         />
         <SearchModal
           refRBSheet={refRBSheet}
