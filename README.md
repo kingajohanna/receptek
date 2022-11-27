@@ -1,10 +1,10 @@
 # receptek
 
-#backend
+# backend
 
 A szerveroldal telepítéséhez és futtatásához Docker futtatókörnyezetre van szükség, ez esetben egy egyszerű docker compose up paranccsal futtatható az összes szerveroldali komponens. A kliensoldalról ezután az API gateway konténerének IP címére kell küldeni a kéréseket.
 
-#frontend
+# frontend
 
 A futtatás lépései:
 1. További dependenciák letöltése: npm i
